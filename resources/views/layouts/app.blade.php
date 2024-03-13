@@ -11,6 +11,8 @@
     </head>
 
     <body class="bg-gray-200 antialiased">
+        @include('partials._navigtion')
+
         @yield('content')
     </body>
 
