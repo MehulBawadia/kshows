@@ -7,6 +7,8 @@
 
         @yield('title_meta_info')
 
+        <meta name="theme-color" content="#22d3ee" />
+
         @vite('resources/css/app.css')
     </head>
 
