@@ -7,5 +7,15 @@
 @endsection
 
 @section('content')
-    <h1>Hello World</h1>
+    <div class="px-8 py-16">
+        <div class="container mx-auto">
+            <h2 class="text-xl font-bold uppercase tracking-wider text-gray-800">Popular Movies</h2>
+
+            <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                @foreach ($popularMovies as $movie)
+                    <x-movie-card :movie="$movie" :genres="$genres" />
+                @endforeach
+            </div>
+        </div>
+    </div>
 @endsection
