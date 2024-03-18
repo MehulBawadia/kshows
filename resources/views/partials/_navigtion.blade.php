@@ -17,6 +17,8 @@
                 <a href="#"
                     class="tracking-wider text-gray-100 transition duration-200 ease-in-out hover:text-cyan-400 focus:text-cyan-400 focus:outline-none focus:ring-0"
                     title="Go to People page" name="go_to_people_page">People</a>
+
+                <livewire:search-dropdown />
             </div>
         </div>
     </div>
