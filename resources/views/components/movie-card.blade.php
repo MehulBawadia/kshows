@@ -1,12 +1,12 @@
 <div class="mt-8 overflow-hidden rounded-md bg-white shadow-md shadow-gray-400">
-    <a href="#">
+    <a href="{{ route('movie.show', $movie['id']) }}">
         <img src="https://image.tmdb.org/t/p/w500/{{ $movie['poster_path'] }}" alt="{{ $movie['title'] }}"
             title="{{ $movie['title'] }}"
             class="w-full transition duration-150 ease-in-out hover:scale-105 hover:opacity-75" />
     </a>
 
     <div class="mt-2 px-4 py-1 tracking-wider">
-        <a href="#"
+        <a href="{{ route('movie.show', $movie['id']) }}"
             class="text-base font-semibold text-gray-800 transition duration-200 ease-in-out hover:text-cyan-800 focus:text-cyan-800 focus:outline-none xl:text-lg">{{ $movie['title'] }}</a>
 
         <div class="mt-1 flex items-center text-sm text-gray-600">
