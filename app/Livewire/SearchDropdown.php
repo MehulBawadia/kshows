@@ -9,16 +9,17 @@ use Livewire\Component;
 class SearchDropdown extends Component
 {
     public $search = '';
+
     public $searchResults = [];
 
     /**
      * Get the search results.
      */
-    public function getSearchResults() : void
+    public function getSearchResults(): void
     {
         if (strlen($this->search) > 2) {
             $results = Http::withToken(config('services.tmdb.token'))
-                ->get(config('services.tmdb.base_url') . '/search/movie?query=' . $this->search)
+                ->get(config('services.tmdb.base_url').'/search/movie?query='.$this->search)
                 ->json()['results'];
 
             $this->searchResults = collect($results)->take(12);
@@ -28,7 +29,7 @@ class SearchDropdown extends Component
     /**
      * Render the component.
      */
-    public function render() : View
+    public function render(): View
     {
         return view('livewire.search-dropdown', [
             'search' => $this->search,
