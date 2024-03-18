@@ -15,10 +15,10 @@ class MovieController extends Controller
      *
      * @param  string  $movieId
      */
-    public function show($movieId) : View
+    public function show($movieId): View
     {
         $movie = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.base_url') . '/movie/' . $movieId . '?append_to_response=credits,videos,images')
+            ->get(config('services.tmdb.base_url').'/movie/'.$movieId.'?append_to_response=credits,videos,images')
             ->json();
         $movie = $this->formatMovieDetails($movie);
 
@@ -30,14 +30,14 @@ class MovieController extends Controller
     /**
      * Format the details of the given movie.
      *
-     * @param  array $movie
+     * @param  array  $movie
      */
-    private function formatMovieDetails($movie) : array
+    private function formatMovieDetails($movie): array
     {
         return [
             'id' => $movie['id'],
             'title' => $movie['title'],
-            'poster_path' => 'https://image.tmdb.org/t/p/w500/' . $movie['poster_path'],
+            'poster_path' => 'https://image.tmdb.org/t/p/w500/'.$movie['poster_path'],
             'overview' => $movie['overview'],
             'release_date' => Carbon::parse($movie['release_date'])->format('l jS F, Y'),
             'vote_average' => Number::percentage($movie['vote_average'] * 10),
@@ -50,9 +50,9 @@ class MovieController extends Controller
     /**
      * Get the genres from the given array of genres.
      *
-     * @param  array $genres
+     * @param  array  $genres
      */
-    private function getGenres($genres) : Collection
+    private function getGenres($genres): Collection
     {
         $data = [];
         foreach ($genres as $genre) {
