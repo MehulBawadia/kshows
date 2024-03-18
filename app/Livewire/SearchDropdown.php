@@ -8,8 +8,18 @@ use Livewire\Component;
 
 class SearchDropdown extends Component
 {
+    /**
+     * The search query instance.
+     *
+     * @var string
+     */
     public $search = '';
 
+    /**
+     * The search results instance.
+     *
+     * @var array
+     */
     public $searchResults = [];
 
     /**
