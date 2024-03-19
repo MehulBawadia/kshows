@@ -1,0 +1,699 @@
+{
+    "results": [
+        {
+            "iso_3166_1": "AD",
+            "english_name": "Andorra",
+            "native_name": "एंडोरा"
+        },
+        {
+            "iso_3166_1": "AE",
+            "english_name": "United Arab Emirates",
+            "native_name": "संयुक्त अरब अमीरात"
+        },
+        {
+            "iso_3166_1": "AG",
+            "english_name": "Antigua and Barbuda",
+            "native_name": "एंटिगुआ और बरबुडा"
+        },
+        {
+            "iso_3166_1": "AL",
+            "english_name": "Albania",
+            "native_name": "अल्बानिया"
+        },
+        {
+            "iso_3166_1": "AO",
+            "english_name": "Angola",
+            "native_name": "अंगोला"
+        },
+        {
+            "iso_3166_1": "AR",
+            "english_name": "Argentina",
+            "native_name": "अर्जेंटीना"
+        },
+        {
+            "iso_3166_1": "AT",
+            "english_name": "Austria",
+            "native_name": "ऑस्ट्रिया"
+        },
+        {
+            "iso_3166_1": "AU",
+            "english_name": "Australia",
+            "native_name": "ऑस्ट्रेलिया"
+        },
+        {
+            "iso_3166_1": "AZ",
+            "english_name": "Azerbaijan",
+            "native_name": "अज़रबैजान"
+        },
+        {
+            "iso_3166_1": "BA",
+            "english_name": "Bosnia and Herzegovina",
+            "native_name": "बोस्निया और हर्ज़ेगोविना"
+        },
+        {
+            "iso_3166_1": "BB",
+            "english_name": "Barbados",
+            "native_name": "बारबाडोस"
+        },
+        {
+            "iso_3166_1": "BE",
+            "english_name": "Belgium",
+            "native_name": "बेल्जियम"
+        },
+        {
+            "iso_3166_1": "BF",
+            "english_name": "Burkina Faso",
+            "native_name": "बुर्किना फ़ासो"
+        },
+        {
+            "iso_3166_1": "BG",
+            "english_name": "Bulgaria",
+            "native_name": "बुल्गारिया"
+        },
+        {
+            "iso_3166_1": "BH",
+            "english_name": "Bahrain",
+            "native_name": "बहरीन"
+        },
+        {
+            "iso_3166_1": "BM",
+            "english_name": "Bermuda",
+            "native_name": "बरमूडा"
+        },
+        {
+            "iso_3166_1": "BO",
+            "english_name": "Bolivia",
+            "native_name": "बोलीविया"
+        },
+        {
+            "iso_3166_1": "BR",
+            "english_name": "Brazil",
+            "native_name": "ब्राज़ील"
+        },
+        {
+            "iso_3166_1": "BS",
+            "english_name": "Bahamas",
+            "native_name": "बहामास"
+        },
+        {
+            "iso_3166_1": "BY",
+            "english_name": "Belarus",
+            "native_name": "बेलारूस"
+        },
+        {
+            "iso_3166_1": "BZ",
+            "english_name": "Belize",
+            "native_name": "बेलीज़"
+        },
+        {
+            "iso_3166_1": "CA",
+            "english_name": "Canada",
+            "native_name": "कनाडा"
+        },
+        {
+            "iso_3166_1": "CD",
+            "english_name": "Congo",
+            "native_name": "कांगो - किंशासा"
+        },
+        {
+            "iso_3166_1": "CH",
+            "english_name": "Switzerland",
+            "native_name": "स्विट्ज़रलैंड"
+        },
+        {
+            "iso_3166_1": "CI",
+            "english_name": "Cote D'Ivoire",
+            "native_name": "कोट डी आइवर"
+        },
+        {
+            "iso_3166_1": "CL",
+            "english_name": "Chile",
+            "native_name": "चिली"
+        },
+        {
+            "iso_3166_1": "CM",
+            "english_name": "Cameroon",
+            "native_name": "कैमरून"
+        },
+        {
+            "iso_3166_1": "CO",
+            "english_name": "Colombia",
+            "native_name": "कोलंबिया"
+        },
+        {
+            "iso_3166_1": "CR",
+            "english_name": "Costa Rica",
+            "native_name": "कोस्टारिका"
+        },
+        {
+            "iso_3166_1": "CU",
+            "english_name": "Cuba",
+            "native_name": "क्यूबा"
+        },
+        {
+            "iso_3166_1": "CV",
+            "english_name": "Cape Verde",
+            "native_name": "केप वर्ड"
+        },
+        {
+            "iso_3166_1": "CY",
+            "english_name": "Cyprus",
+            "native_name": "साइप्रस"
+        },
+        {
+            "iso_3166_1": "CZ",
+            "english_name": "Czech Republic",
+            "native_name": "चेक गणराज्य"
+        },
+        {
+            "iso_3166_1": "DE",
+            "english_name": "Germany",
+            "native_name": "जर्मनी"
+        },
+        {
+            "iso_3166_1": "DK",
+            "english_name": "Denmark",
+            "native_name": "डेनमार्क"
+        },
+        {
+            "iso_3166_1": "DO",
+            "english_name": "Dominican Republic",
+            "native_name": "डोमिनिकन गणराज्य"
+        },
+        {
+            "iso_3166_1": "DZ",
+            "english_name": "Algeria",
+            "native_name": "अल्जीरिया"
+        },
+        {
+            "iso_3166_1": "EC",
+            "english_name": "Ecuador",
+            "native_name": "इक्वाडोर"
+        },
+        {
+            "iso_3166_1": "EE",
+            "english_name": "Estonia",
+            "native_name": "एस्टोनिया"
+        },
+        {
+            "iso_3166_1": "EG",
+            "english_name": "Egypt",
+            "native_name": "मिस्र"
+        },
+        {
+            "iso_3166_1": "ES",
+            "english_name": "Spain",
+            "native_name": "स्पेन"
+        },
+        {
+            "iso_3166_1": "FI",
+            "english_name": "Finland",
+            "native_name": "फ़िनलैंड"
+        },
+        {
+            "iso_3166_1": "FJ",
+            "english_name": "Fiji",
+            "native_name": "फ़िजी"
+        },
+        {
+            "iso_3166_1": "FR",
+            "english_name": "France",
+            "native_name": "फ़्रांस"
+        },
+        {
+            "iso_3166_1": "GB",
+            "english_name": "United Kingdom",
+            "native_name": "यूनाइटेड किंगडम"
+        },
+        {
+            "iso_3166_1": "GF",
+            "english_name": "French Guiana",
+            "native_name": "फ़्रेंच गयाना"
+        },
+        {
+            "iso_3166_1": "GH",
+            "english_name": "Ghana",
+            "native_name": "घाना"
+        },
+        {
+            "iso_3166_1": "GI",
+            "english_name": "Gibraltar",
+            "native_name": "जिब्राल्टर"
+        },
+        {
+            "iso_3166_1": "GP",
+            "english_name": "Guadaloupe",
+            "native_name": "ग्वाडेलूप"
+        },
+        {
+            "iso_3166_1": "GQ",
+            "english_name": "Equatorial Guinea",
+            "native_name": "इक्वेटोरियल गिनी"
+        },
+        {
+            "iso_3166_1": "GR",
+            "english_name": "Greece",
+            "native_name": "यूनान"
+        },
+        {
+            "iso_3166_1": "GT",
+            "english_name": "Guatemala",
+            "native_name": "ग्वाटेमाला"
+        },
+        {
+            "iso_3166_1": "GY",
+            "english_name": "Guyana",
+            "native_name": "गयाना"
+        },
+        {
+            "iso_3166_1": "HK",
+            "english_name": "Hong Kong",
+            "native_name": "हाँग काँग (चीन विशेष प्रशासनिक क्षेत्र)"
+        },
+        {
+            "iso_3166_1": "HN",
+            "english_name": "Honduras",
+            "native_name": "होंडूरास"
+        },
+        {
+            "iso_3166_1": "HR",
+            "english_name": "Croatia",
+            "native_name": "क्रोएशिया"
+        },
+        {
+            "iso_3166_1": "HU",
+            "english_name": "Hungary",
+            "native_name": "हंगरी"
+        },
+        {
+            "iso_3166_1": "ID",
+            "english_name": "Indonesia",
+            "native_name": "इंडोनेशिया"
+        },
+        {
+            "iso_3166_1": "IE",
+            "english_name": "Ireland",
+            "native_name": "आयरलैंड"
+        },
+        {
+            "iso_3166_1": "IL",
+            "english_name": "Israel",
+            "native_name": "इसराइल"
+        },
+        {
+            "iso_3166_1": "IN",
+            "english_name": "India",
+            "native_name": "भारत"
+        },
+        {
+            "iso_3166_1": "IQ",
+            "english_name": "Iraq",
+            "native_name": "इराक"
+        },
+        {
+            "iso_3166_1": "IS",
+            "english_name": "Iceland",
+            "native_name": "आइसलैंड"
+        },
+        {
+            "iso_3166_1": "IT",
+            "english_name": "Italy",
+            "native_name": "इटली"
+        },
+        {
+            "iso_3166_1": "JM",
+            "english_name": "Jamaica",
+            "native_name": "जमैका"
+        },
+        {
+            "iso_3166_1": "JO",
+            "english_name": "Jordan",
+            "native_name": "जॉर्डन"
+        },
+        {
+            "iso_3166_1": "JP",
+            "english_name": "Japan",
+            "native_name": "जापान"
+        },
+        {
+            "iso_3166_1": "KE",
+            "english_name": "Kenya",
+            "native_name": "केन्या"
+        },
+        {
+            "iso_3166_1": "KR",
+            "english_name": "South Korea",
+            "native_name": "दक्षिण कोरिया"
+        },
+        {
+            "iso_3166_1": "KW",
+            "english_name": "Kuwait",
+            "native_name": "कुवैत"
+        },
+        {
+            "iso_3166_1": "LB",
+            "english_name": "Lebanon",
+            "native_name": "लेबनान"
+        },
+        {
+            "iso_3166_1": "LC",
+            "english_name": "St. Lucia",
+            "native_name": "सेंट लूसिया"
+        },
+        {
+            "iso_3166_1": "LI",
+            "english_name": "Liechtenstein",
+            "native_name": "लिचेंस्टीन"
+        },
+        {
+            "iso_3166_1": "LT",
+            "english_name": "Lithuania",
+            "native_name": "लिथुआनिया"
+        },
+        {
+            "iso_3166_1": "LU",
+            "english_name": "Luxembourg",
+            "native_name": "लग्ज़मबर्ग"
+        },
+        {
+            "iso_3166_1": "LV",
+            "english_name": "Latvia",
+            "native_name": "लातविया"
+        },
+        {
+            "iso_3166_1": "LY",
+            "english_name": "Libyan Arab Jamahiriya",
+            "native_name": "लीबिया"
+        },
+        {
+            "iso_3166_1": "MA",
+            "english_name": "Morocco",
+            "native_name": "मोरक्को"
+        },
+        {
+            "iso_3166_1": "MC",
+            "english_name": "Monaco",
+            "native_name": "मोनाको"
+        },
+        {
+            "iso_3166_1": "MD",
+            "english_name": "Moldova",
+            "native_name": "मॉल्डोवा"
+        },
+        {
+            "iso_3166_1": "ME",
+            "english_name": "Montenegro",
+            "native_name": "मोंटेनेग्रो"
+        },
+        {
+            "iso_3166_1": "MG",
+            "english_name": "Madagascar",
+            "native_name": "मेडागास्कर"
+        },
+        {
+            "iso_3166_1": "MK",
+            "english_name": "Macedonia",
+            "native_name": "मैसिडोनिया"
+        },
+        {
+            "iso_3166_1": "ML",
+            "english_name": "Mali",
+            "native_name": "माली"
+        },
+        {
+            "iso_3166_1": "MT",
+            "english_name": "Malta",
+            "native_name": "माल्टा"
+        },
+        {
+            "iso_3166_1": "MU",
+            "english_name": "Mauritius",
+            "native_name": "मॉरिशस"
+        },
+        {
+            "iso_3166_1": "MW",
+            "english_name": "Malawi",
+            "native_name": "मलावी"
+        },
+        {
+            "iso_3166_1": "MX",
+            "english_name": "Mexico",
+            "native_name": "मैक्सिको"
+        },
+        {
+            "iso_3166_1": "MY",
+            "english_name": "Malaysia",
+            "native_name": "मलेशिया"
+        },
+        {
+            "iso_3166_1": "MZ",
+            "english_name": "Mozambique",
+            "native_name": "मोज़ांबिक"
+        },
+        {
+            "iso_3166_1": "NE",
+            "english_name": "Niger",
+            "native_name": "नाइजर"
+        },
+        {
+            "iso_3166_1": "NG",
+            "english_name": "Nigeria",
+            "native_name": "नाइजीरिया"
+        },
+        {
+            "iso_3166_1": "NI",
+            "english_name": "Nicaragua",
+            "native_name": "निकारागुआ"
+        },
+        {
+            "iso_3166_1": "NL",
+            "english_name": "Netherlands",
+            "native_name": "नीदरलैंड"
+        },
+        {
+            "iso_3166_1": "NO",
+            "english_name": "Norway",
+            "native_name": "नॉर्वे"
+        },
+        {
+            "iso_3166_1": "NZ",
+            "english_name": "New Zealand",
+            "native_name": "न्यूज़ीलैंड"
+        },
+        {
+            "iso_3166_1": "OM",
+            "english_name": "Oman",
+            "native_name": "ओमान"
+        },
+        {
+            "iso_3166_1": "PA",
+            "english_name": "Panama",
+            "native_name": "पनामा"
+        },
+        {
+            "iso_3166_1": "PE",
+            "english_name": "Peru",
+            "native_name": "पेरू"
+        },
+        {
+            "iso_3166_1": "PF",
+            "english_name": "French Polynesia",
+            "native_name": "फ़्रेंच पोलिनेशिया"
+        },
+        {
+            "iso_3166_1": "PG",
+            "english_name": "Papua New Guinea",
+            "native_name": "पापुआ न्यू गिनी"
+        },
+        {
+            "iso_3166_1": "PH",
+            "english_name": "Philippines",
+            "native_name": "फ़िलिपींस"
+        },
+        {
+            "iso_3166_1": "PK",
+            "english_name": "Pakistan",
+            "native_name": "पाकिस्तान"
+        },
+        {
+            "iso_3166_1": "PL",
+            "english_name": "Poland",
+            "native_name": "पोलैंड"
+        },
+        {
+            "iso_3166_1": "PS",
+            "english_name": "Palestinian Territory",
+            "native_name": "फ़िलिस्तीनी क्षेत्र"
+        },
+        {
+            "iso_3166_1": "PT",
+            "english_name": "Portugal",
+            "native_name": "पुर्तगाल"
+        },
+        {
+            "iso_3166_1": "PY",
+            "english_name": "Paraguay",
+            "native_name": "पेराग्वे"
+        },
+        {
+            "iso_3166_1": "QA",
+            "english_name": "Qatar",
+            "native_name": "क़तर"
+        },
+        {
+            "iso_3166_1": "RO",
+            "english_name": "Romania",
+            "native_name": "रोमानिया"
+        },
+        {
+            "iso_3166_1": "RS",
+            "english_name": "Serbia",
+            "native_name": "सर्बिया"
+        },
+        {
+            "iso_3166_1": "RU",
+            "english_name": "Russia",
+            "native_name": "रूस"
+        },
+        {
+            "iso_3166_1": "SA",
+            "english_name": "Saudi Arabia",
+            "native_name": "सऊदी अरब"
+        },
+        {
+            "iso_3166_1": "SC",
+            "english_name": "Seychelles",
+            "native_name": "सेशेल्स"
+        },
+        {
+            "iso_3166_1": "SE",
+            "english_name": "Sweden",
+            "native_name": "स्वीडन"
+        },
+        {
+            "iso_3166_1": "SG",
+            "english_name": "Singapore",
+            "native_name": "सिंगापुर"
+        },
+        {
+            "iso_3166_1": "SI",
+            "english_name": "Slovenia",
+            "native_name": "स्लोवेनिया"
+        },
+        {
+            "iso_3166_1": "SK",
+            "english_name": "Slovakia",
+            "native_name": "स्लोवाकिया"
+        },
+        {
+            "iso_3166_1": "SM",
+            "english_name": "San Marino",
+            "native_name": "सैन मेरीनो"
+        },
+        {
+            "iso_3166_1": "SN",
+            "english_name": "Senegal",
+            "native_name": "सेनेगल"
+        },
+        {
+            "iso_3166_1": "SV",
+            "english_name": "El Salvador",
+            "native_name": "अल सल्वाडोर"
+        },
+        {
+            "iso_3166_1": "TC",
+            "english_name": "Turks and Caicos Islands",
+            "native_name": "तुर्क और कैकोज़ द्वीपसमूह"
+        },
+        {
+            "iso_3166_1": "TD",
+            "english_name": "Chad",
+            "native_name": "चाड"
+        },
+        {
+            "iso_3166_1": "TH",
+            "english_name": "Thailand",
+            "native_name": "थाईलैंड"
+        },
+        {
+            "iso_3166_1": "TN",
+            "english_name": "Tunisia",
+            "native_name": "ट्यूनीशिया"
+        },
+        {
+            "iso_3166_1": "TR",
+            "english_name": "Turkey",
+            "native_name": "तुर्की"
+        },
+        {
+            "iso_3166_1": "TT",
+            "english_name": "Trinidad and Tobago",
+            "native_name": "त्रिनिदाद और टोबैगो"
+        },
+        {
+            "iso_3166_1": "TW",
+            "english_name": "Taiwan",
+            "native_name": "ताइवान"
+        },
+        {
+            "iso_3166_1": "TZ",
+            "english_name": "Tanzania",
+            "native_name": "तंज़ानिया"
+        },
+        {
+            "iso_3166_1": "UA",
+            "english_name": "Ukraine",
+            "native_name": "यूक्रेन"
+        },
+        {
+            "iso_3166_1": "UG",
+            "english_name": "Uganda",
+            "native_name": "युगांडा"
+        },
+        {
+            "iso_3166_1": "US",
+            "english_name": "United States of America",
+            "native_name": "संयुक्त राज्य"
+        },
+        {
+            "iso_3166_1": "UY",
+            "english_name": "Uruguay",
+            "native_name": "उरूग्वे"
+        },
+        {
+            "iso_3166_1": "VA",
+            "english_name": "Holy See",
+            "native_name": "वेटिकन सिटी"
+        },
+        {
+            "iso_3166_1": "VE",
+            "english_name": "Venezuela",
+            "native_name": "वेनेज़ुएला"
+        },
+        {
+            "iso_3166_1": "XK",
+            "english_name": "Kosovo",
+            "native_name": "कोसोवो"
+        },
+        {
+            "iso_3166_1": "YE",
+            "english_name": "Yemen",
+            "native_name": "यमन"
+        },
+        {
+            "iso_3166_1": "ZA",
+            "english_name": "South Africa",
+            "native_name": "दक्षिण अफ़्रीका"
+        },
+        {
+            "iso_3166_1": "ZM",
+            "english_name": "Zambia",
+            "native_name": "ज़ाम्बिया"
+        },
+        {
+            "iso_3166_1": "ZW",
+            "english_name": "Zimbabwe",
+            "native_name": "ज़िम्बाब्वे"
+        }
+    ]
+}
