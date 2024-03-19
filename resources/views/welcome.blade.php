@@ -13,7 +13,9 @@
 
             <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                 @foreach ($popularMovies as $movie)
-                    <x-movie-card :movie="$movie" :genres="$genres" />
+                    @if ($movie['poster_path'])
+                        <x-movie-card :movie="$movie" :genres="$genres" />
+                    @endif
                 @endforeach
             </div>
         </div>
@@ -25,7 +27,9 @@
 
             <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                 @foreach ($nowPlaying as $movie)
-                    <x-movie-card :movie="$movie" :genres="$genres" />
+                    @if ($movie['poster_path'])
+                        <x-movie-card :movie="$movie" :genres="$genres" />
+                    @endif
                 @endforeach
             </div>
         </div>
