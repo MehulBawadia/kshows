@@ -13,7 +13,7 @@ class HomeController extends Controller
     public function index(): View
     {
         $popularMovies = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.base_url').'/movie/popular')
+            ->get(config('services.tmdb.base_url').'/discover/movie?watch_region=KR&with_original_language=ko&sort_by=popularity.desc')
             ->json()['results'];
 
         $startDate = today()->subDays(30)->toDateString();
