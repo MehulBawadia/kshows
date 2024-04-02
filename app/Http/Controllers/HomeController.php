@@ -24,12 +24,12 @@ class HomeController extends Controller
     /**
      * Display the home page.
      */
-    public function index($pageNumber = 1) : View
+    public function index($pageNumber = 1): View
     {
         $popularMovies = $this->getMovies($pageNumber);
 
         $genresArray = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.base_url') . '/genre/movie/list')
+            ->get(config('services.tmdb.base_url').'/genre/movie/list')
             ->json()['genres'];
         $genres = collect($genresArray)->mapWithKeys(function ($genre) {
             return [$genre['id'] => $genre['name']];
@@ -47,11 +47,11 @@ class HomeController extends Controller
      * Filter out the movies based on some crieterias.
      * For more filtering criteria, refer the url given below.
      *
-     * @param int $pageNumber
+     * @param  int  $pageNumber
      *
      * @link https://developer.themoviedb.org/reference/discover-movie
      */
-    protected function getMovies($pageNumber = 1) : array
+    protected function getMovies($pageNumber = 1): array
     {
         $movieFilter = [
             'page' => $pageNumber,
@@ -69,7 +69,7 @@ class HomeController extends Controller
         }, '&');
 
         $this->movieResponse = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.base_url') . "/discover/movie?{$movieFilter}")
+            ->get(config('services.tmdb.base_url')."/discover/movie?{$movieFilter}")
             ->json();
 
         $this->moviesList = array_merge($this->moviesList, $this->movieResponse['results']);
