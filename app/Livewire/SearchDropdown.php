@@ -60,7 +60,7 @@ class SearchDropdown extends Component
         $filters = $this->prepareSearchQuery();
 
         return Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.base_url')."/search/{$type}?".$filters)
+            ->get(config('services.tmdb.base_url')."/search/{$type}?{$filters}")
             ->json()['results'];
     }
 
