@@ -95,7 +95,7 @@ class SearchDropdown extends Component
                 $item['title'] = $item['name'];
             }
             $item['type'] = $type;
-            $item['endpoint_url'] = route('search.show', [$type, $item['id']]);
+            $item['endpoint_url'] = route('search.show', ['type' => $type, 'id' => $item['id']]);
 
             return $item;
         })->values();
