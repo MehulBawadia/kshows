@@ -16,10 +16,10 @@ class SearchController extends Controller
      * @param  string  $type
      * @param  string  $id
      */
-    public function show($type, $id) : View
+    public function show($type, $id): View
     {
         $tvOrMovie = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.base_url') . "/{$type}/{$id}?append_to_response=credits,videos,images")
+            ->get(config('services.tmdb.base_url')."/{$type}/{$id}?append_to_response=credits,videos,images")
             ->json();
         $tvOrMovie = $this->formatDetails($tvOrMovie, $type);
 
@@ -34,12 +34,12 @@ class SearchController extends Controller
      *
      * @param  array  $tvOrMovie
      */
-    private function formatDetails($tvOrMovie, $type) : array
+    private function formatDetails($tvOrMovie, $type): array
     {
         return [
             'id' => $tvOrMovie['id'],
             'title' => array_key_exists('title', $tvOrMovie) ? $tvOrMovie['title'] : $tvOrMovie['name'],
-            'poster_path' => 'https://image.tmdb.org/t/p/w500/' . $tvOrMovie['poster_path'],
+            'poster_path' => 'https://image.tmdb.org/t/p/w500/'.$tvOrMovie['poster_path'],
             'overview' => $tvOrMovie['overview'],
             'release_date' => $type === 'movie'
                 ? Carbon::parse($tvOrMovie['release_date'])->format('l jS F, Y')
@@ -56,7 +56,7 @@ class SearchController extends Controller
      *
      * @param  array  $genres
      */
-    private function getGenres($genres) : Collection
+    private function getGenres($genres): Collection
     {
         $data = [];
         foreach ($genres as $genre) {

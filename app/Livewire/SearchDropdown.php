@@ -26,7 +26,7 @@ class SearchDropdown extends Component
     /**
      * Get the search results.
      */
-    public function getSearchResults() : void
+    public function getSearchResults(): void
     {
         if (strlen($this->search) > 2) {
             $movies = $this->performSearch('movie');
@@ -42,7 +42,7 @@ class SearchDropdown extends Component
     /**
      * Render the component.
      */
-    public function render() : View
+    public function render(): View
     {
         return view('livewire.search-dropdown', [
             'search' => $this->search,
@@ -53,21 +53,21 @@ class SearchDropdown extends Component
     /**
      * Perform the search at the TMDB end.
      *
-     * @param  string $name
+     * @param  string  $name
      */
-    protected function performSearch($type) : array
+    protected function performSearch($type): array
     {
         $filters = $this->prepareSearchQuery();
 
         return Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.base_url') . "/search/{$type}?" . $filters)
+            ->get(config('services.tmdb.base_url')."/search/{$type}?".$filters)
             ->json()['results'];
     }
 
     /**
      * Prepare the search query filters.
      */
-    protected function prepareSearchQuery() : string
+    protected function prepareSearchQuery(): string
     {
         $movieFilter = [
             'query' => $this->search,
@@ -83,19 +83,20 @@ class SearchDropdown extends Component
     /**
      * Format the details of the movie or tv show.
      *
-     * @param array $data
-     * @param string $type
+     * @param  array  $data
+     * @param  string  $type
      */
-    protected function formatDetails($data, $type) : Collection
+    protected function formatDetails($data, $type): Collection
     {
         return collect($data)->filter(function ($item) {
             return $item['original_language'] === 'ko';
         })->map(function ($item) use ($type) {
-            if (! isset ($item['title'])) {
+            if (! isset($item['title'])) {
                 $item['title'] = $item['name'];
             }
             $item['type'] = $type;
             $item['endpoint_url'] = route('search.show', [$type, $item['id']]);
+
             return $item;
         })->values();
     }
