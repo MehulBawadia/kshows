@@ -72,7 +72,6 @@ class TvShowController extends Controller
         $tvShow = Http::withToken(config('services.tmdb.token'))
             ->get(config('services.tmdb.base_url') . "/tv/{$tvShowId}?append_to_response=credits,videos,images")
             ->json();
-        // dd($tvShow);
         $tvShow = $this->formatTvWShowDetails($tvShow);
 
         return view('tv-shows.show', [
