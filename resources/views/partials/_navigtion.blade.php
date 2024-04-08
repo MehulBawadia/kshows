@@ -11,7 +11,7 @@
                 <a href="{{ route('home') }}"
                     class="tracking-wider text-gray-100 transition duration-200 ease-in-out hover:text-cyan-400 focus:text-cyan-400 focus:outline-none focus:ring-0"
                     title="Go to Movies page" name="go_to_movies_page">Movies</a>
-                <a href="#"
+                <a href="{{ route('tv.index') }}"
                     class="tracking-wider text-gray-100 transition duration-200 ease-in-out hover:text-cyan-400 focus:text-cyan-400 focus:outline-none focus:ring-0"
                     title="Go to TV Shows page" name="go_to_tv_shows_page">TV Shows</a>
                 <a href="#"
