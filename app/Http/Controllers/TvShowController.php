@@ -72,7 +72,7 @@ class TvShowController extends Controller
         $tvShow = Http::withToken(config('services.tmdb.token'))
             ->get(config('services.tmdb.base_url') . "/tv/{$tvShowId}?append_to_response=credits,videos,images")
             ->json();
-        $tvShow = $this->formatTvWShowDetails($tvShow);
+        $tvShow = $this->formatTvShowDetails($tvShow);
 
         return view('tv-shows.show', [
             'tvShow' => $tvShow,
@@ -121,7 +121,7 @@ class TvShowController extends Controller
      *
      * @param  array  $tvShow
      */
-    private function formatTvWShowDetails($tvShow) : array
+    private function formatTvShowDetails($tvShow) : array
     {
         return [
             'id' => $tvShow['id'],
