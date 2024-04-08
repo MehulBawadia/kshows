@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Number;
 use Illuminate\View\View;
 
 class TvShowController extends Controller
@@ -61,6 +63,23 @@ class TvShowController extends Controller
     }
 
     /**
+     * Display the details of the given tv show id.
+     *
+     * @param integer $tvShowId
+     */
+    public function show($tvShowId) : View
+    {
+        $tvShow = Http::withToken(config('services.tmdb.token'))
+            ->get(config('services.tmdb.base_url') . "/tv/{$tvShowId}?append_to_response=credits,videos,images")
+            ->json();
+        $tvShow = $this->formatTvShowDetails($tvShow);
+
+        return view('tv-shows.show', [
+            'tvShow' => $tvShow,
+        ]);
+    }
+
+    /**
      * Filter out the tv shows based on some crieterias.
      * For more filtering criteria, refer the url given below.
      *
@@ -95,5 +114,40 @@ class TvShowController extends Controller
         })->values()->toArray();
 
         return $list;
+    }
+
+    /**
+     * Format the details of the given tvShow.
+     *
+     * @param  array  $tvShow
+     */
+    private function formatTvShowDetails($tvShow) : array
+    {
+        return [
+            'id' => $tvShow['id'],
+            'title' => $tvShow['name'],
+            'poster_path' => 'https://image.tmdb.org/t/p/w500/' . $tvShow['poster_path'],
+            'overview' => $tvShow['overview'],
+            'first_air_date' => Carbon::parse($tvShow['first_air_date'])->format('l jS F, Y'),
+            'vote_average' => Number::percentage($tvShow['vote_average'] * 10),
+            'genres' => $this->getGenres($tvShow['genres'])->implode(', '),
+            'cast' => collect($tvShow['credits']['cast']),
+            'crew' => collect($tvShow['credits']['crew']),
+        ];
+    }
+
+    /**
+     * Get the genres from the given array of genres.
+     *
+     * @param  array  $genres
+     */
+    private function getGenres($genres) : Collection
+    {
+        $data = [];
+        foreach ($genres as $genre) {
+            $data[] = $genre['name'];
+        }
+
+        return collect($data)->sort();
     }
 }
