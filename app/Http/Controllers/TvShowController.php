@@ -72,7 +72,6 @@ class TvShowController extends Controller
             ->get(config('services.tmdb.base_url') . "/tv/{$tvShowId}?append_to_response=credits,videos,images")
             ->json();
         $tvShow = $this->formatTvShowDetails($tvShow);
-        // dd($tvShow);
 
         return view('tv-shows.show', [
             'tvShow' => $tvShow,
