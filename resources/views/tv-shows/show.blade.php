@@ -56,7 +56,7 @@
                             class="mt-6 grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                             @foreach ($tvShow['cast'] as $cast)
                                 <div class="overflow-hidden rounded-md bg-white shadow-md shadow-gray-400">
-                                    <a href="#">
+                                    <a href="{{ route('person.show', $cast['id']) }}">
                                         <img src="{{ $cast['profile_picture'] }}" alt="{{ $cast['name'] }}"
                                             title="{{ $cast['name'] }}"
                                             class="transition duration-150 ease-in-out hover:opacity-75" />
