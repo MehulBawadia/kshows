@@ -36,10 +36,10 @@ class TvShowController extends Controller
      *
      * @param  int  $pageNumber
      */
-    public function index($pageNumber = 1): View
+    public function index($pageNumber = 1) : View
     {
         $genresArray = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.base_url').'/genre/tv/list')
+            ->get(config('services.tmdb.base_url') . '/genre/tv/list')
             ->json()['genres'];
         $genres = collect($genresArray)->mapWithKeys(function ($genre) {
             return [$genre['id'] => $genre['name']];
@@ -66,12 +66,13 @@ class TvShowController extends Controller
      *
      * @param  int  $tvShowId
      */
-    public function show($tvShowId): View
+    public function show($tvShowId) : View
     {
         $tvShow = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.base_url')."/tv/{$tvShowId}?append_to_response=credits,videos,images")
+            ->get(config('services.tmdb.base_url') . "/tv/{$tvShowId}?append_to_response=credits,videos,images")
             ->json();
         $tvShow = $this->formatTvShowDetails($tvShow);
+        // dd($tvShow);
 
         return view('tv-shows.show', [
             'tvShow' => $tvShow,
@@ -86,7 +87,7 @@ class TvShowController extends Controller
      *
      * @link https://developer.themoviedb.org/reference/discover-tv
      */
-    protected function getTvShows($pageNumber): array
+    protected function getTvShows($pageNumber) : array
     {
         $tvFilter = [
             'air_date.lte' => today()->format('Y-m-d'),
@@ -102,7 +103,7 @@ class TvShowController extends Controller
         }, '&');
 
         $this->tvResponse = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.base_url')."/discover/tv?{$tvFilter}")
+            ->get(config('services.tmdb.base_url') . "/discover/tv?{$tvFilter}")
             ->json();
 
         $this->tvShowsList = array_merge($this->tvShowsList, $this->tvResponse['results']);
@@ -121,19 +122,46 @@ class TvShowController extends Controller
      *
      * @param  array  $tvShow
      */
-    private function formatTvShowDetails($tvShow): array
+    private function formatTvShowDetails($tvShow) : array
     {
         return [
             'id' => $tvShow['id'],
             'title' => $tvShow['name'],
-            'poster_path' => 'https://image.tmdb.org/t/p/w500/'.$tvShow['poster_path'],
+            'poster_path' => 'https://image.tmdb.org/t/p/w500/' . $tvShow['poster_path'],
             'overview' => $tvShow['overview'],
             'first_air_date' => Carbon::parse($tvShow['first_air_date'])->format('l jS F, Y'),
             'vote_average' => Number::percentage($tvShow['vote_average'] * 10),
             'genres' => $this->getGenres($tvShow['genres'])->implode(', '),
-            'cast' => collect($tvShow['credits']['cast']),
-            'crew' => collect($tvShow['credits']['crew']),
+            'cast' => $this->getCastCrewDetails($tvShow['credits']['cast']),
+            'crew' => $this->getCastCrewDetails($tvShow['credits']['crew']),
+            // 'cast' => collect($tvShow['credits']['cast']),
+            // 'crew' => collect($tvShow['credits']['crew']),
         ];
+    }
+
+    /**
+     * Format the cast and crew details that are required.
+     *
+     * @param  array $data
+     */
+    protected function getCastCrewDetails($data) : array
+    {
+        return collect($data)->map(function ($castCrew) {
+            $hasProfilePicture = isset ($castCrew['profile_path']) && $castCrew['profile_path'] !== null;
+
+            // Get the name intials of the cast or crew which will be
+            // used at the time of displaying the profile picture.
+            preg_match_all('/\b\w/', $castCrew['name'], $matches);
+
+            return [
+                'id' => $castCrew['id'],
+                'name' => $castCrew['name'],
+                'has_profile_picture' => $hasProfilePicture,
+                'profile_picture' => $hasProfilePicture ? "https://image.tmdb.org/t/p/w300/" . $castCrew['profile_path'] : null,
+                'role' => isset ($castCrew['character']) ? $castCrew['character'] : $castCrew['job'],
+                'name_initials' => isset ($matches[0]) && $matches[0] ? implode('.', $matches[0]) : "--",
+            ];
+        })->toArray();
     }
 
     /**
@@ -141,7 +169,7 @@ class TvShowController extends Controller
      *
      * @param  array  $genres
      */
-    private function getGenres($genres): Collection
+    private function getGenres($genres) : Collection
     {
         $data = [];
         foreach ($genres as $genre) {
