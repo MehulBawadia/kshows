@@ -55,24 +55,22 @@
                         <div
                             class="mt-6 grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                             @foreach ($tvShow['cast'] as $cast)
-                                @if ($cast['profile_path'])
-                                    <div class="overflow-hidden rounded-md bg-white shadow-md shadow-gray-400">
-                                        <a href="#">
-                                            <img src="https://image.tmdb.org/t/p/w300/{{ $cast['profile_path'] }}"
-                                                alt="{{ $cast['name'] }}" title="{{ $cast['name'] }}"
-                                                class="transition duration-150 ease-in-out hover:opacity-75" />
-                                        </a>
+                                <div class="overflow-hidden rounded-md bg-white shadow-md shadow-gray-400">
+                                    <a href="#">
+                                        <img src="{{ $cast['profile_picture'] }}" alt="{{ $cast['name'] }}"
+                                            title="{{ $cast['name'] }}"
+                                            class="transition duration-150 ease-in-out hover:opacity-75" />
+                                    </a>
 
-                                        <div class="mt-2 px-4 py-2">
-                                            <a href="#"
-                                                class="text-base font-semibold tracking-wider text-gray-800 transition duration-200 ease-in-out hover:text-cyan-800 focus:text-cyan-800 focus:outline-none">{{ $cast['name'] }}</a>
+                                    <div class="mt-2 px-4 py-2">
+                                        <a href="#"
+                                            class="text-base font-semibold tracking-wider text-gray-800 transition duration-200 ease-in-out hover:text-cyan-800 focus:text-cyan-800 focus:outline-none">{{ $cast['name'] }}</a>
 
-                                            <div class="mt-1 flex items-center text-sm tracking-wider text-gray-600">
-                                                {{ $cast['character'] }}
-                                            </div>
+                                        <div class="mt-1 flex items-center text-sm tracking-wider text-gray-600">
+                                            {{ $cast['role'] }}
                                         </div>
                                     </div>
-                                @endif
+                                </div>
                             @endforeach
                         </div>
                     </div>
@@ -85,14 +83,24 @@
         <div class="container mx-auto">
             <h2 class="text-base font-semibold tracking-wider text-gray-800 md:text-xl">Crew Members</h2>
 
-            <div class="mt-6 grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-                @foreach ($tvShow['crew'] as $crew)
-                    @if ($crew['profile_path'])
+            @if ($tvShow['crew'])
+                <div class="mt-6 grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                    @foreach ($tvShow['crew'] as $crew)
                         <div class="overflow-hidden rounded-md bg-white shadow-md shadow-gray-400">
                             <a href="#">
-                                <img src="https://image.tmdb.org/t/p/w300/{{ $crew['profile_path'] }}"
-                                    alt="{{ $crew['name'] }}" title="{{ $crew['name'] }}"
-                                    class="transition duration-150 ease-in-out hover:opacity-75" />
+                                @if ($crew['has_profile_picture'])
+                                    <img src="{{ $crew['profile_picture'] }}" alt="{{ $crew['name'] }}"
+                                        title="{{ $crew['name'] }}"
+                                        class="h-[450px] transition duration-150 ease-in-out hover:opacity-75"
+                                        width="300" height="450" />
+                                @else
+                                    <div class="flex h-[450px] w-full items-center justify-center bg-cyan-950">
+                                        <span
+                                            class="rounded-md bg-white px-6 py-4 text-4xl font-bold uppercase text-cyan-950">
+                                            {{ $crew['name_initials'] }}
+                                        </span>
+                                    </div>
+                                @endif
                             </a>
 
                             <div class="mt-2 px-4 py-2">
@@ -100,13 +108,17 @@
                                     class="text-base font-semibold tracking-wider text-gray-800 transition duration-200 ease-in-out hover:text-cyan-800 focus:text-cyan-800 focus:outline-none">{{ $crew['name'] }}</a>
 
                                 <div class="mt-1 flex items-center text-sm tracking-wider text-gray-600">
-                                    {{ $crew['job'] }}
+                                    {{ $crew['role'] }}
                                 </div>
                             </div>
                         </div>
-                    @endif
-                @endforeach
-            </div>
+                    @endforeach
+                </div>
+            @else
+                <div class="mt-6 text-sm leading-6 tracking-wider text-gray-600 lg:text-base lg:leading-8">
+                    No Records Available for the Crew, at the moment.
+                </div>
+            @endif
         </div>
     </div>
 @endsection
