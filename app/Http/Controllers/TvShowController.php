@@ -133,8 +133,6 @@ class TvShowController extends Controller
             'genres' => $this->getGenres($tvShow['genres'])->implode(', '),
             'cast' => $this->getCastCrewDetails($tvShow['credits']['cast']),
             'crew' => $this->getCastCrewDetails($tvShow['credits']['crew']),
-            // 'cast' => collect($tvShow['credits']['cast']),
-            // 'crew' => collect($tvShow['credits']['crew']),
         ];
     }
 
