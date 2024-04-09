@@ -53,14 +53,14 @@
                             @foreach ($movie['cast'] as $cast)
                                 @if ($cast['profile_path'])
                                     <div class="overflow-hidden rounded-md bg-white shadow-md shadow-gray-400">
-                                        <a href="#">
+                                        <a href="{{ route('person.show', $cast['id']) }}">
                                             <img src="https://image.tmdb.org/t/p/w300/{{ $cast['profile_path'] }}"
                                                 alt="{{ $cast['name'] }}" title="{{ $cast['name'] }}"
                                                 class="transition duration-150 ease-in-out hover:opacity-75" />
                                         </a>
 
                                         <div class="mt-2 px-4 py-2">
-                                            <a href="#"
+                                            <a href="{{ route('person.show', $cast['id']) }}"
                                                 class="text-base font-semibold tracking-wider text-gray-800 transition duration-200 ease-in-out hover:text-cyan-800 focus:text-cyan-800 focus:outline-none">{{ $cast['name'] }}</a>
 
                                             <div class="mt-1 flex items-center text-sm tracking-wider text-gray-600">
