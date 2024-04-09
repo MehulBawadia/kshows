@@ -86,7 +86,6 @@
             @if ($tvShow['crew'])
                 <div class="mt-6 grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                     @foreach ($tvShow['crew'] as $crew)
-                        {{-- @if ($crew['profile_path']) --}}
                         <div class="overflow-hidden rounded-md bg-white shadow-md shadow-gray-400">
                             <a href="#">
                                 @if ($crew['has_profile_picture'])
@@ -113,7 +112,6 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- @endif --}}
                     @endforeach
                 </div>
             @else
