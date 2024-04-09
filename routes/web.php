@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\PersonController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\PersonController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TvShowController;
 use Illuminate\Support\Facades\Route;

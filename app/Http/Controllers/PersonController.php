@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Number;
 use Illuminate\View\View;
@@ -27,10 +26,10 @@ class PersonController extends Controller
      *
      * @param  string  $personId
      */
-    public function show($personId) : View
+    public function show($personId): View
     {
         $person = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.base_url') . "/person/{$personId}?append_to_response=combined_credits,external_ids")
+            ->get(config('services.tmdb.base_url')."/person/{$personId}?append_to_response=combined_credits,external_ids")
             ->json();
         $person = $this->preparePersonDetails($person);
 
@@ -42,9 +41,9 @@ class PersonController extends Controller
     /**
      * Prepare the details of the given person.
      *
-     * @param  array $person
+     * @param  array  $person
      */
-    protected function preparePersonDetails($person) : array
+    protected function preparePersonDetails($person): array
     {
         return [
             'id' => $person['id'],
@@ -64,9 +63,9 @@ class PersonController extends Controller
      * Prepare the list of all the movies and tv shows based on the credits
      * that are provided.
      *
-     * @param  array $credits
+     * @param  array  $credits
      */
-    protected function prepareMovieTvShowCredits($credits) : array
+    protected function prepareMovieTvShowCredits($credits): array
     {
         return collect($credits)->map(function ($cast) {
             return [
@@ -101,13 +100,13 @@ class PersonController extends Controller
      *
      * @param  array  $links
      */
-    protected function prepareSocialMediaLinks($links) : array
+    protected function prepareSocialMediaLinks($links): array
     {
-        $platforms = ['facebook', 'twitter', 'instagram',];
+        $platforms = ['facebook', 'twitter', 'instagram'];
         $socials = [];
         foreach ($platforms as $platform) {
-            if ($links[$platform . '_id']) {
-                $socials[$platform] = "https://{$platform}.com/{$links[$platform . '_id']}";
+            if ($links[$platform.'_id']) {
+                $socials[$platform] = "https://{$platform}.com/{$links[$platform.'_id']}";
             }
         }
 
