@@ -69,7 +69,7 @@ class TvShowController extends Controller
     public function show($tvShowId): View
     {
         $tvShow = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.base_url')."/tv/{$tvShowId}?append_to_response=credits,videos,images")
+            ->get(config('services.tmdb.base_url')."/tv/{$tvShowId}?append_to_response=credits")
             ->json();
         $tvShow = $this->formatTvShowDetails($tvShow);
 
@@ -130,10 +130,46 @@ class TvShowController extends Controller
             'overview' => $tvShow['overview'],
             'first_air_date' => Carbon::parse($tvShow['first_air_date'])->format('l jS F, Y'),
             'vote_average' => Number::percentage($tvShow['vote_average'] * 10),
+            'status' => $tvShow['status'],
+            'total_episodes' => $tvShow['number_of_episodes'],
+            'total_seasons' => $tvShow['number_of_seasons'],
             'genres' => $this->getGenres($tvShow['genres'])->implode(', '),
             'cast' => $this->getCastCrewDetails($tvShow['credits']['cast']),
             'crew' => $this->getCastCrewDetails($tvShow['credits']['crew']),
+            'episodes' => $this->prepareEpisodeDetails($tvShow['id'], $tvShow['seasons']),
         ];
+    }
+
+    /**
+     * Prepare the necessary details of the given seasons.
+     *
+     * @param  array  $seasons
+     */
+    protected function prepareEpisodeDetails($tvShowId, $seasons): array
+    {
+        $episodes = [];
+        foreach ($seasons as $season) {
+            $seasonNumber = $season['season_number'];
+            $episodes[$seasonNumber] = Http::withToken(config('services.tmdb.token'))
+                ->get(config('services.tmdb.base_url')."/tv/{$tvShowId}/season/{$seasonNumber}")
+                ->json()['episodes'];
+        }
+
+        $episodes = collect($episodes)->map(function ($episode, $number) {
+            return collect($episode)->map(function ($details) {
+                return [
+                    'id' => $details['id'],
+                    'number' => $details['episode_number'],
+                    'air_date' => Carbon::parse($details['air_date'])->format('l jS F, Y'),
+                    'overview' => $details['overview'],
+                    'runtime' => $details['runtime'],
+                    'formatted_length' => $time = ($details['runtime'] ? date('H:i', mktime(0, $details['runtime'])) : '00:00'),
+                    'human_readable_time_length' => $this->formatRuntime($time),
+                ];
+            })->filter()->toArray();
+        })->filter();
+
+        return $episodes->count() === 1 ? $episodes->first() : $episodes->toArray();
     }
 
     /**
@@ -174,5 +210,23 @@ class TvShowController extends Controller
         }
 
         return collect($data)->sort();
+    }
+
+    /**
+     * Format the run time into a human readable format.
+     *
+     * @param  string  $time
+     */
+    protected function formatRuntime($time): string
+    {
+        [$hours, $minutes] = explode(':', $time);
+        $totalMinutes = $hours * 60 + $minutes;
+        $convertedHours = floor($totalMinutes / 60);
+        $remainingMinutes = $totalMinutes % 60;
+
+        $output = ($convertedHours > 0 ? "$convertedHours hour ".($convertedHours > 1 ? 's' : '') : '')
+            .($remainingMinutes > 0 ? (empty($output) ? '' : ' and ')."$remainingMinutes minute".($remainingMinutes > 1 ? 's' : '') : '');
+
+        return $output;
     }
 }

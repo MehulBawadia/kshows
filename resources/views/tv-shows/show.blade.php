@@ -22,11 +22,23 @@
 
     <div class="my-16 px-8">
         <div class="container mx-auto">
-            <div class="flex flex-col items-start gap-8 md:flex-row">
-                <img src="{{ $tvShow['poster_path'] }}" alt="{{ $tvShow['title'] }}"
-                    class="mx-auto block w-full rounded-md sm:w-1/2" />
-
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
                 <div>
+                    <img src="{{ $tvShow['poster_path'] }}" alt="{{ $tvShow['title'] }}"
+                        class="mx-auto block w-full rounded-md" />
+
+                    <div class="my-6 text-sm leading-6 tracking-wider lg:text-base lg:leading-8">
+                        <div class="font-medium text-gray-500">Number of Seasons</div>
+                        <div class="font-semibold text-gray-800">{{ $tvShow['total_seasons'] }}</div>
+                    </div>
+
+                    <div class="my-6 text-sm leading-6 tracking-wider lg:text-base lg:leading-8">
+                        <div class="font-medium text-gray-500">Number of Episodes</div>
+                        <div class="font-semibold text-gray-800">{{ $tvShow['total_episodes'] }}</div>
+                    </div>
+                </div>
+
+                <div class="w-full md:col-span-2">
                     <h1 class="text-xl font-bold uppercase tracking-wider text-gray-800 md:text-3xl">
                         {{ $tvShow['title'] }}
                     </h1>
@@ -76,6 +88,44 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="px-8 py-16">
+        <div class="container mx-auto">
+            <h2 class="text-base font-semibold tracking-wider text-gray-800 md:text-xl">Episodes</h2>
+
+            <table class="mt-6 w-full overflow-hidden rounded text-gray-500 shadow">
+                <thead class="bg-gray-50 text-xs uppercase text-gray-700">
+                    <tr>
+                        <th class="px-6 py-3 text-center tracking-wider">Episode Number</th>
+                        <th class="px-6 py-3 text-left tracking-wider">Overview</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($tvShow['episodes'] as $episode)
+                        <tr class="border-b bg-white">
+                            <td class="px-6 py-4 text-center text-gray-900">
+                                {{ $episode['number'] }}
+                            </td>
+                            <td class="px-6 py-4 text-justify capitalize leading-6">
+                                <div class="text-sm leading-7 tracking-widest text-gray-800">
+                                    {{ $episode['overview'] }}
+                                </div>
+                                <div class="mt-4">
+                                    <time class="text-sm leading-8 tracking-widest">
+                                        {{ $episode['air_date'] }}
+                                    </time>
+                                    <span class="mx-4 text-sm leading-7 tracking-wider">|</span>
+                                    <span class="text-sm leading-7 tracking-wider">
+                                        {{ $episode['human_readable_time_length'] }}
+                                    </span>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 
