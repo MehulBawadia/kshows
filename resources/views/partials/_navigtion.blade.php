@@ -1,8 +1,8 @@
 <nav class="bg-cyan-950 px-8 py-4">
     <div class="container mx-auto">
         <div class="flex items-center justify-between">
-            <a href="/" class="group flex items-center focus:outline-none focus:ring-0" title="Go to Home Page"
-                name="go_to_home_page">
+            <a href="{{ route('home') }}" class="group flex items-center focus:outline-none focus:ring-0"
+                title="Go to Home Page" name="go_to_home_page">
                 <img src="/images/logo.svg" alt="{{ config('app.name') }}" title="{{ config('app.name') }}"
                     class="block w-9" loading="eager" />
                 <span
