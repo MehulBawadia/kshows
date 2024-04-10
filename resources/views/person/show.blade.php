@@ -12,9 +12,6 @@
             <a href="{{ route('home') }}"
                 class="tracking-wider text-gray-800 hover:text-cyan-800 focus:text-cyan-800 focus:outline-none focus:ring-0">Home</a>
             <span class="text-gray-600">&raquo;</span>
-            <a href="#"
-                class="tracking-wider text-gray-800 hover:text-cyan-800 focus:text-cyan-800 focus:outline-none focus:ring-0">People</a>
-            <span class="text-gray-600">&raquo;</span>
             <span class="capitalize tracking-wider text-gray-600">{{ $person['name'] }}</span>
         </div>
     </div>
