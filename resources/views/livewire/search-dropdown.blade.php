@@ -25,18 +25,15 @@
         <div class="absolute z-50 mt-2 w-64 rounded bg-gray-800">
             <ul>
                 @forelse ($searchResults as $result)
-                    @if ($result['poster_path'])
-                        <li class="border-b border-gray-400">
-                            <a href="{{ $result['endpoint_url'] }}"
-                                class="flex items-center px-3 py-2 text-gray-200 hover:bg-gray-600"
-                                @if ($loop->last) @keydown.tab="isOpen = false" @endif>
-                                <img src="https://image.tmdb.org/t/p/w92/{{ $result['poster_path'] }}"
-                                    alt="{{ $result['title'] }}" class="w-8">
+                    <li class="border-b border-gray-400">
+                        <a href="{{ $result['endpoint_url'] }}"
+                            class="flex items-center px-3 py-2 text-gray-200 hover:bg-gray-600"
+                            @if ($loop->last) @keydown.tab="isOpen = false" @endif>
+                            <img src="{{ $result['poster_path'] }}" alt="{{ $result['title'] }}" class="w-8">
 
-                                <span class="ml-4">{{ $result['title'] }}</span>
-                            </a>
-                        </li>
-                    @endif
+                            <span class="ml-4">{{ $result['title'] }}</span>
+                        </a>
+                    </li>
                 @empty
                     <li class="px-3 py-2">No results for "{{ $search }}"</li>
                 @endforelse
