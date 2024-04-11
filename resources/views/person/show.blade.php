@@ -18,7 +18,7 @@
 
     <div class="my-16 px-8">
         <div class="container mx-auto">
-            <div class="grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-4">
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
                 <div>
                     <img src="{{ $person['profile_picture'] }}" alt="{{ $person['name'] }}"
                         class="mx-auto block rounded-md shadow-md" />
@@ -56,12 +56,13 @@
                     </div>
                 </div>
 
-                <div class="w-full md:col-span-2 lg:col-span-3">
+                <div class="w-full md:col-span-2">
                     <h1 class="text-xl font-bold uppercase tracking-wider text-gray-800 md:text-3xl">
                         {{ $person['name'] }}
                     </h1>
 
-                    <p class="mt-8 text-sm leading-6 tracking-wider text-gray-700 lg:text-lg lg:leading-8">
+                    <p
+                        class="mt-8 text-justify text-sm leading-6 tracking-wider text-gray-700 md:text-base lg:text-lg lg:leading-8">
                         {{ $person['biography'] }}
                     </p>
 

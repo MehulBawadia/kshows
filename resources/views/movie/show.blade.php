@@ -18,11 +18,13 @@
 
     <div class="my-16 px-8">
         <div class="container mx-auto">
-            <div class="flex flex-col items-start gap-8 md:flex-row">
-                <img src="{{ $movie['poster_path'] }}" alt="{{ $movie['title'] }}"
-                    class="mx-auto block w-full rounded-md sm:w-1/2" />
-
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
                 <div>
+                    <img src="{{ $movie['poster_path'] }}" alt="{{ $movie['title'] }}"
+                        class="mx-auto block rounded-md shadow-md" />
+                </div>
+
+                <div class="w-full md:col-span-2">
                     <h1 class="text-xl font-bold uppercase tracking-wider text-gray-800 md:text-3xl">
                         {{ $movie['title'] }}
                     </h1>
@@ -42,7 +44,8 @@
                         <span>{{ $movie['genres'] }}</span>
                     </div>
 
-                    <p class="mt-8 text-sm leading-6 tracking-wider text-gray-600 lg:text-base lg:leading-8">
+                    <p
+                        class="mt-8 text-justify text-sm leading-6 tracking-wider text-gray-700 md:text-base lg:text-lg lg:leading-8">
                         {{ $movie['overview'] }}</p>
 
                     <div class="my-12">
