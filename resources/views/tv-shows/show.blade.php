@@ -109,10 +109,16 @@
                                 {{ $episode['number'] }}
                             </td>
                             <td class="px-6 py-4 text-justify capitalize leading-6">
-                                <div class="text-sm leading-7 tracking-widest text-gray-800">
-                                    {{ $episode['overview'] }}
-                                </div>
-                                <div class="mt-4">
+                                @if ($episode['overview'])
+                                    <div class="mb-4 text-sm leading-7 tracking-widest text-gray-800">
+                                        {{ $episode['overview'] }}
+                                    </div>
+                                @endif
+                                <div>
+                                    <span class="text-sm leading-7 tracking-wider">
+                                        Season: {{ $episode['season_number'] }}
+                                    </span>
+                                    <span class="mx-4 text-sm leading-7 tracking-wider">|</span>
                                     <time class="text-sm leading-8 tracking-widest">
                                         {{ $episode['air_date'] }}
                                     </time>
