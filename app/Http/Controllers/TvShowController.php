@@ -155,18 +155,21 @@ class TvShowController extends Controller
                 ->json()['episodes'];
         }
 
-        $episodes = collect($episodes)->map(function ($episode, $number) {
-            return collect($episode)->map(function ($details) {
-                return [
-                    'id' => $details['id'],
-                    'number' => $details['episode_number'],
-                    'air_date' => Carbon::parse($details['air_date'])->format('l jS F, Y'),
-                    'overview' => $details['overview'],
-                    'runtime' => $details['runtime'],
-                    'formatted_length' => $time = ($details['runtime'] ? date('H:i', mktime(0, $details['runtime'])) : '00:00'),
-                    'human_readable_time_length' => $this->formatRuntime($time),
-                ];
-            })->filter()->toArray();
+        $episodes = collect($episodes)->flatten(1)->filter(function ($data) {
+            if ($data['season_number'] > 0) {
+                return $data;
+            }
+        })->map(function ($episode, $number) {
+            return [
+                'id' => $episode['id'],
+                'season_number' => $episode['season_number'],
+                'number' => $episode['episode_number'],
+                'air_date' => Carbon::parse($episode['air_date'])->format('l jS F, Y'),
+                'overview' => $episode['overview'],
+                'runtime' => $episode['runtime'],
+                'formatted_length' => $time = ($episode['runtime'] ? date('H:i', mktime(0, $episode['runtime'])) : '00:00'),
+                'human_readable_time_length' => $this->formatRuntime($time),
+            ];
         })->filter();
 
         return $episodes->count() === 1 ? $episodes->first() : $episodes->toArray();
