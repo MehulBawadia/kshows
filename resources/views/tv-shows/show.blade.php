@@ -58,7 +58,8 @@
                         <span>{{ $tvShow['genres'] }}</span>
                     </div>
 
-                    <p class="mt-8 text-sm leading-6 tracking-wider text-gray-600 lg:text-base lg:leading-8">
+                    <p
+                        class="mt-8 text-justify text-sm leading-6 tracking-wider text-gray-700 md:text-base lg:text-lg lg:leading-8">
                         {{ $tvShow['overview'] }}</p>
 
                     <div class="my-12">
