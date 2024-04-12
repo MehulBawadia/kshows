@@ -79,22 +79,7 @@
                         <div
                             class="mt-6 grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                             @foreach ($tvShow['cast'] as $cast)
-                                <div class="overflow-hidden rounded-md bg-white shadow-md shadow-gray-400">
-                                    <a href="{{ route('person.show', $cast['id']) }}">
-                                        <img src="{{ $cast['profile_picture'] }}" alt="{{ $cast['name'] }}"
-                                            title="{{ $cast['name'] }}"
-                                            class="transition duration-150 ease-in-out hover:opacity-75" />
-                                    </a>
-
-                                    <div class="mt-2 px-4 py-2">
-                                        <a href="#"
-                                            class="text-base font-semibold tracking-wider text-gray-800 transition duration-200 ease-in-out hover:text-cyan-800 focus:text-cyan-800 focus:outline-none">{{ $cast['name'] }}</a>
-
-                                        <div class="mt-1 flex items-center text-sm tracking-wider text-gray-600">
-                                            {{ $cast['role'] }}
-                                        </div>
-                                    </div>
-                                </div>
+                                <x-user-card :user="$cast" />
                             @endforeach
                         </div>
                     </div>
@@ -154,32 +139,7 @@
             @if ($tvShow['crew'])
                 <div class="mt-6 grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                     @foreach ($tvShow['crew'] as $crew)
-                        <div class="overflow-hidden rounded-md bg-white shadow-md shadow-gray-400">
-                            <a href="#">
-                                @if ($crew['has_profile_picture'])
-                                    <img src="{{ $crew['profile_picture'] }}" alt="{{ $crew['name'] }}"
-                                        title="{{ $crew['name'] }}"
-                                        class="h-[450px] transition duration-150 ease-in-out hover:opacity-75"
-                                        width="300" height="450" />
-                                @else
-                                    <div class="flex h-[450px] w-full items-center justify-center bg-cyan-950">
-                                        <span
-                                            class="rounded-md bg-white px-6 py-4 text-4xl font-bold uppercase text-cyan-950">
-                                            {{ $crew['name_initials'] }}
-                                        </span>
-                                    </div>
-                                @endif
-                            </a>
-
-                            <div class="mt-2 px-4 py-2">
-                                <a href="#"
-                                    class="text-base font-semibold tracking-wider text-gray-800 transition duration-200 ease-in-out hover:text-cyan-800 focus:text-cyan-800 focus:outline-none">{{ $crew['name'] }}</a>
-
-                                <div class="mt-1 flex items-center text-sm tracking-wider text-gray-600">
-                                    {{ $crew['role'] }}
-                                </div>
-                            </div>
-                        </div>
+                        <x-user-card :user="$crew" />
                     @endforeach
                 </div>
             @else
