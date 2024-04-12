@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Traits\CastCrewDetails;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
@@ -10,6 +11,8 @@ use Illuminate\View\View;
 
 class MovieController extends Controller
 {
+    use CastCrewDetails;
+
     /**
      * Display the movie details page of the given movieId.
      *
@@ -42,8 +45,8 @@ class MovieController extends Controller
             'release_date' => Carbon::parse($movie['release_date'])->format('l jS F, Y'),
             'vote_average' => Number::percentage($movie['vote_average'] * 10),
             'genres' => $this->getGenres($movie['genres'])->implode(', '),
-            'cast' => collect($movie['credits']['cast'])->take(12),
-            'crew' => collect($movie['credits']['crew'])->take(12),
+            'cast' => $this->getCastCrewDetails($movie['credits']['cast']),
+            'crew' => $this->getCastCrewDetails($movie['credits']['crew']),
             'alternative_titles' => $this->getAlternativeTitles($movie['alternative_titles']['titles']),
         ];
     }

@@ -65,24 +65,7 @@
                         <div
                             class="mt-6 grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                             @foreach ($movie['cast'] as $cast)
-                                @if ($cast['profile_path'])
-                                    <div class="overflow-hidden rounded-md bg-white shadow-md shadow-gray-400">
-                                        <a href="{{ route('person.show', $cast['id']) }}">
-                                            <img src="https://image.tmdb.org/t/p/w300/{{ $cast['profile_path'] }}"
-                                                alt="{{ $cast['name'] }}" title="{{ $cast['name'] }}"
-                                                class="transition duration-150 ease-in-out hover:opacity-75" />
-                                        </a>
-
-                                        <div class="mt-2 px-4 py-2">
-                                            <a href="{{ route('person.show', $cast['id']) }}"
-                                                class="text-base font-semibold tracking-wider text-gray-800 transition duration-200 ease-in-out hover:text-cyan-800 focus:text-cyan-800 focus:outline-none">{{ $cast['name'] }}</a>
-
-                                            <div class="mt-1 flex items-center text-sm tracking-wider text-gray-600">
-                                                {{ $cast['character'] }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
+                                <x-user-card :user="$cast" />
                             @endforeach
                         </div>
                     </div>
@@ -97,24 +80,7 @@
 
             <div class="mt-6 grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                 @foreach ($movie['crew'] as $crew)
-                    @if ($crew['profile_path'])
-                        <div class="overflow-hidden rounded-md bg-white shadow-md shadow-gray-400">
-                            <a href="#">
-                                <img src="https://image.tmdb.org/t/p/w300/{{ $crew['profile_path'] }}"
-                                    alt="{{ $crew['name'] }}" title="{{ $crew['name'] }}"
-                                    class="transition duration-150 ease-in-out hover:opacity-75" />
-                            </a>
-
-                            <div class="mt-2 px-4 py-2">
-                                <a href="#"
-                                    class="text-base font-semibold tracking-wider text-gray-800 transition duration-200 ease-in-out hover:text-cyan-800 focus:text-cyan-800 focus:outline-none">{{ $crew['name'] }}</a>
-
-                                <div class="mt-1 flex items-center text-sm tracking-wider text-gray-600">
-                                    {{ $crew['job'] }}
-                                </div>
-                            </div>
-                        </div>
-                    @endif
+                    <x-user-card :user="$crew" />
                 @endforeach
             </div>
         </div>
