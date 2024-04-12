@@ -69,7 +69,7 @@ class TvShowController extends Controller
     public function show($tvShowId): View
     {
         $tvShow = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.base_url')."/tv/{$tvShowId}?append_to_response=credits")
+            ->get(config('services.tmdb.base_url')."/tv/{$tvShowId}?append_to_response=credits,alternative_titles")
             ->json();
         $tvShow = $this->formatTvShowDetails($tvShow);
 
@@ -137,6 +137,7 @@ class TvShowController extends Controller
             'cast' => $this->getCastCrewDetails($tvShow['credits']['cast']),
             'crew' => $this->getCastCrewDetails($tvShow['credits']['crew']),
             'episodes' => $this->prepareEpisodeDetails($tvShow['id'], $tvShow['seasons']),
+            'alternative_titles' => $this->getAlternativeTitles($tvShow['alternative_titles']['results']),
         ];
     }
 
@@ -231,5 +232,17 @@ class TvShowController extends Controller
             .($remainingMinutes > 0 ? (empty($output) ? '' : ' and ')."$remainingMinutes minute".($remainingMinutes > 1 ? 's' : '') : '');
 
         return $output;
+    }
+
+    /**
+     * Get the alternative titles from the provided array.
+     *
+     * @param  array  $titles
+     */
+    private function getAlternativeTitles($titles): array
+    {
+        return collect($titles)->map(function ($title) {
+            return $title['title'];
+        })->toArray();
     }
 }
