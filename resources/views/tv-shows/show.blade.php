@@ -28,6 +28,17 @@
                         class="mx-auto block w-full rounded-md" />
 
                     <div class="my-6 text-sm leading-6 tracking-wider lg:text-base lg:leading-8">
+                        <div class="font-medium text-gray-500">Alternative Titles</div>
+                        <div class="font-semibold text-gray-800">
+                            @forelse ($tvShow['alternative_titles'] as $title)
+                                <span class="block">{{ $title }}</span>
+                            @empty
+                                No alternative titles added.
+                            @endforelse
+                        </div>
+                    </div>
+
+                    <div class="my-6 text-sm leading-6 tracking-wider lg:text-base lg:leading-8">
                         <div class="font-medium text-gray-500">Number of Seasons</div>
                         <div class="font-semibold text-gray-800">{{ $tvShow['total_seasons'] }}</div>
                     </div>
