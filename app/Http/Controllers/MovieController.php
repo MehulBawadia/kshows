@@ -18,7 +18,7 @@ class MovieController extends Controller
     public function show($movieId): View
     {
         $movie = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.base_url').'/movie/'.$movieId.'?append_to_response=credits,videos,images')
+            ->get(config('services.tmdb.base_url').'/movie/'.$movieId.'?append_to_response=credits,alternative_titles')
             ->json();
         $movie = $this->formatMovieDetails($movie);
 
@@ -44,6 +44,7 @@ class MovieController extends Controller
             'genres' => $this->getGenres($movie['genres'])->implode(', '),
             'cast' => collect($movie['credits']['cast'])->take(12),
             'crew' => collect($movie['credits']['crew'])->take(12),
+            'alternative_titles' => $this->getAlternativeTitles($movie['alternative_titles']['titles']),
         ];
     }
 
@@ -60,5 +61,17 @@ class MovieController extends Controller
         }
 
         return collect($data)->sort();
+    }
+
+    /**
+     * Get the alternative titles from the provided array.
+     *
+     * @param  array  $titles
+     */
+    private function getAlternativeTitles($titles): array
+    {
+        return collect($titles)->map(function ($title) {
+            return $title['title'];
+        })->toArray();
     }
 }

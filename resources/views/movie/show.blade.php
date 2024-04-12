@@ -22,6 +22,17 @@
                 <div>
                     <img src="{{ $movie['poster_path'] }}" alt="{{ $movie['title'] }}"
                         class="mx-auto block rounded-md shadow-md" />
+
+                    <div class="my-6 text-sm leading-6 tracking-wider lg:text-base lg:leading-8">
+                        <div class="font-medium text-gray-500">Alternative Titles</div>
+                        <div class="font-semibold text-gray-800">
+                            @forelse ($movie['alternative_titles'] as $title)
+                                <span class="block">{{ $title }}</span>
+                            @empty
+                                No alternative titles added.
+                            @endforelse
+                        </div>
+                    </div>
                 </div>
 
                 <div class="w-full md:col-span-2">
