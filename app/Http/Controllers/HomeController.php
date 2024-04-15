@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Traits\GenresList;
 use Illuminate\Support\Facades\Http;
 use Illuminate\View\View;
 
 class HomeController extends Controller
 {
+    use GenresList;
+
     /**
      * The list of all the movies instance holder.
      *
@@ -28,12 +31,7 @@ class HomeController extends Controller
     {
         $popularMovies = $this->getMovies($pageNumber);
 
-        $genresArray = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.base_url').'/genre/movie/list')
-            ->json()['genres'];
-        $genres = collect($genresArray)->mapWithKeys(function ($genre) {
-            return [$genre['id'] => $genre['name']];
-        });
+        $genres = $this->moviesGenre();
 
         return view('welcome')->with([
             'popularMovies' => $popularMovies,

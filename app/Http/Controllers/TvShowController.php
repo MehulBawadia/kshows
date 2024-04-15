@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Traits\CastCrewDetails;
+use App\Traits\GenresList;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
@@ -11,7 +12,7 @@ use Illuminate\View\View;
 
 class TvShowController extends Controller
 {
-    use CastCrewDetails;
+    use CastCrewDetails, GenresList;
 
     /**
      * The list of all the tv shows instance holder.
@@ -41,12 +42,7 @@ class TvShowController extends Controller
      */
     public function index($pageNumber = 1): View
     {
-        $genresArray = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.base_url').'/genre/tv/list')
-            ->json()['genres'];
-        $genres = collect($genresArray)->mapWithKeys(function ($genre) {
-            return [$genre['id'] => $genre['name']];
-        });
+        $genres = $this->tvShowsGenre();
 
         $this->unwatedGenres = $genres->filter(function ($genre) {
             if (in_array($genre, ['Animation', 'Kids', 'News', 'Reality', 'Documentary', 'Talk'])) {
