@@ -1,8 +1,8 @@
 <div class="relative mt-3 md:mt-0">
     <form wire:submit.prevent.debounce.500ms="getSearchResults">
         <input wire:model.debouce.500ms="search" type="text"
-            class="w-64 rounded-full bg-gray-200 py-1 pl-8 text-sm focus:outline-none focus:ring"
-            placeholder="Search (Press '/' to focus)" @focus="isOpen = true" @keydown="isOpen = true"
+            class="w-64 rounded-full bg-gray-200 py-1 pl-8 text-sm focus:outline-none focus:ring md:w-96"
+            placeholder="Search (Press '/' to focus) and Hit Enter" @focus="isOpen = true" @keydown="isOpen = true"
             @keydown.escape.window="isOpen = false" @keydown.shift.tab="isOpen = false" x-ref="search"
             @keydown.window="
             if (event.keyCode == 191) {
@@ -19,10 +19,13 @@
         </svg>
     </div>
 
-    <div wire:loading class="spinner right-0 top-0 mr-4 mt-3"></div>
+    <div wire:loading
+        class="spinner absolute left-0 top-0 mr-4 mt-8 w-full rounded-md bg-cyan-950 px-3 py-2 text-gray-200">
+        Loading...
+    </div>
 
     @if (strlen($search) >= 2)
-        <div class="absolute z-50 mt-2 w-64 rounded bg-gray-800">
+        <div class="absolute z-50 mt-2 w-64 rounded bg-gray-800 md:w-96">
             <ul>
                 @forelse ($searchResults as $result)
                     <li class="border-b border-gray-400">
