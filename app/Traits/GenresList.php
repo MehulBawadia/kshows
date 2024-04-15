@@ -11,7 +11,7 @@ trait GenresList
      * Get the list of genres for the movies, and remember it forever
      * in the cache.
      */
-    protected function moviesGenre() : Collection
+    protected function moviesGenre(): Collection
     {
         return cache()->rememberForever('moviesGenre', function () {
             $genresArray = $this->fetchGenres('movie');
@@ -38,10 +38,10 @@ trait GenresList
      *
      * @param  string  $type
      */
-    protected function fetchGenres($type) : array
+    protected function fetchGenres($type): array
     {
         return Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.base_url') . "/genre/{$type}/list")
+            ->get(config('services.tmdb.base_url')."/genre/{$type}/list")
             ->json()['genres'];
     }
 
@@ -51,7 +51,7 @@ trait GenresList
      *
      * @param  array  $genresArray
      */
-    protected function prepareGenresList($genresArray) : Collection
+    protected function prepareGenresList($genresArray): Collection
     {
         return collect($genresArray)->mapWithKeys(function ($genre) {
             return [$genre['id'] => $genre['name']];
