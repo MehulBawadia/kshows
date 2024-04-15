@@ -72,6 +72,7 @@ class PersonController extends Controller
                 'id' => $cast['id'],
                 'title' => $cast['media_type'] === 'movie' ? $cast['title'] : $cast['name'],
                 'overview' => $cast['overview'],
+                'has_poster_path' => $cast['poster_path'] ? true : false,
                 'poster_path' => "https://image.tmdb.org/t/p/w500{$cast['poster_path']}",
                 'played_as' => $cast['character'],
                 'aired_or_released_on' => $cast['media_type'] === 'movie'
@@ -89,7 +90,7 @@ class PersonController extends Controller
         })
             ->sortByDesc('aired_or_released_on')
             ->filter(function ($cast) {
-                if ($cast['aired_or_released_on'] && $cast['poster_path']) {
+                if ($cast['aired_or_released_on'] && $cast['has_poster_path']) {
                     return $cast;
                 }
             })->values()->toArray();
