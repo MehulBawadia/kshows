@@ -35,4 +35,9 @@
     echo "Removed node_modules/ directory.."
 
     echo "Check https://subdomain.domain-name.com"
+
+    {{--
+        For more information, visit the following link:
+        https://bmehul.com/articles/deploy-laravel-app-on-shared-server-using-envoy
+    --}}
 @endtask
