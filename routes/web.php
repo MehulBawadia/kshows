@@ -6,7 +6,6 @@ use App\Http\Controllers\PersonController;
 use App\Http\Controllers\TvShowController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/tv', [TvShowController::class, 'index'])->name('tv.index');
 Route::get('/tv/{pageNumber?}', [TvShowController::class, 'index'])->name('tv.index');
 Route::get('/tv-show/{id}', [TvShowController::class, 'show'])->name('tv.show');
 
