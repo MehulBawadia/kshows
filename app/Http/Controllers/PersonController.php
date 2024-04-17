@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\TMDB;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Number;
 use Illuminate\View\View;
 
@@ -28,9 +28,11 @@ class PersonController extends Controller
      */
     public function show($personId): View
     {
-        $person = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.base_url')."/person/{$personId}?append_to_response=combined_credits,external_ids")
-            ->json();
+        $personFilter = [
+            'api_key' => config('services.tmdb.api_key'),
+            'append_to_response' => 'combined_credits,external_ids',
+        ];
+        $person = TMDB::personDetails($personId, $personFilter);
         $person = $this->preparePersonDetails($person);
 
         return view('person.show')->with([

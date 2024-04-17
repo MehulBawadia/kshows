@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\TMDB;
 use App\Traits\GenresList;
-use Illuminate\Support\Facades\Http;
 use Illuminate\View\View;
 
 class HomeController extends Controller
@@ -52,6 +52,7 @@ class HomeController extends Controller
     protected function getMovies($pageNumber = 1): array
     {
         $movieFilter = [
+            'api_key' => config('services.tmdb.api_key'),
             'page' => $pageNumber,
             'sort_by' => 'primary_release_date.desc',
             'vote_average.gte' => 0,
@@ -62,13 +63,7 @@ class HomeController extends Controller
             'release_date.gte' => '1970-01-01',
             'vote_count.gte' => 3,
         ];
-        $movieFilter = collect($movieFilter)->implode(function ($value, $index) {
-            return "{$index}={$value}";
-        }, '&');
-
-        $this->movieResponse = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.base_url')."/discover/movie?{$movieFilter}")
-            ->json();
+        $this->movieResponse = TMDB::movies($movieFilter);
 
         $this->moviesList = array_merge($this->moviesList, $this->movieResponse['results']);
 
