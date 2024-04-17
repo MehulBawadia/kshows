@@ -11,7 +11,7 @@ class TMDB
      */
     public static function movies(array $filter): array
     {
-        return Http::withQueryParameters($filter)
+        return Http::retry(3, 1000)->withQueryParameters($filter)
             ->get(config('services.tmdb.base_url').'/discover/movie')
             ->json();
     }
@@ -22,7 +22,7 @@ class TMDB
      */
     public static function movieDetails(int $movieId, array $filter): array
     {
-        return Http::withQueryParameters($filter)
+        return Http::retry(3, 1000)->withQueryParameters($filter)
             ->get(config('services.tmdb.base_url')."/movie/{$movieId}")
             ->json();
     }
@@ -32,7 +32,7 @@ class TMDB
      */
     public static function tvShows(array $filter): array
     {
-        return Http::withQueryParameters($filter)
+        return Http::retry(3, 1000)->withQueryParameters($filter)
             ->get(config('services.tmdb.base_url').'/discover/tv')
             ->json();
     }
@@ -43,7 +43,7 @@ class TMDB
      */
     public static function tvShowDetails(int $tvShowId, array $filter): array
     {
-        return Http::withQueryParameters($filter)
+        return Http::retry(3, 1000)->withQueryParameters($filter)
             ->get(config('services.tmdb.base_url')."/tv/{$tvShowId}")
             ->json();
     }
@@ -53,7 +53,7 @@ class TMDB
         $apiKey = config('services.tmdb.api_key');
         $uri = "/tv/{$tvShowId}/season/{$seasonNumber}";
 
-        return Http::get(config('services.tmdb.base_url')."{$uri}?api_key={$apiKey}")
+        return Http::retry(3, 1000)->get(config('services.tmdb.base_url')."{$uri}?api_key={$apiKey}")
             ->json()['episodes'];
     }
 
@@ -65,7 +65,7 @@ class TMDB
      */
     public static function personDetails($personId, array $filter): array
     {
-        return Http::withQueryParameters($filter)
+        return Http::retry(3, 1000)->withQueryParameters($filter)
             ->get(config('services.tmdb.base_url')."/person/{$personId}")
             ->json();
     }
