@@ -41,7 +41,7 @@ class TvShowController extends Controller
      *
      * @param  int  $pageNumber
      */
-    public function index($pageNumber = 1): View
+    public function index($pageNumber = 1) : View
     {
         $genres = $this->tvShowsGenre();
 
@@ -66,7 +66,7 @@ class TvShowController extends Controller
      *
      * @param  int  $tvShowId
      */
-    public function show($tvShowId): View
+    public function show($tvShowId) : View
     {
         $tvShowFilter = [
             'api_key' => config('services.tmdb.api_key'),
@@ -88,7 +88,7 @@ class TvShowController extends Controller
      *
      * @link https://developer.themoviedb.org/reference/discover-tv
      */
-    protected function getTvShows($pageNumber): array
+    protected function getTvShows($pageNumber) : array
     {
         $tvFilter = [
             'api_key' => config('services.tmdb.api_key'),
@@ -118,12 +118,12 @@ class TvShowController extends Controller
      *
      * @param  array  $tvShow
      */
-    private function formatTvShowDetails($tvShow): array
+    private function formatTvShowDetails($tvShow) : array
     {
         return [
             'id' => $tvShow['id'],
             'title' => $tvShow['name'],
-            'poster_path' => 'https://image.tmdb.org/t/p/w500/'.$tvShow['poster_path'],
+            'poster_path' => 'https://image.tmdb.org/t/p/w500/' . $tvShow['poster_path'],
             'overview' => $tvShow['overview'],
             'first_air_date' => Carbon::parse($tvShow['first_air_date'])->format('l jS F, Y'),
             'vote_average' => Number::percentage($tvShow['vote_average'] * 10),
@@ -143,15 +143,12 @@ class TvShowController extends Controller
      *
      * @param  array  $seasons
      */
-    protected function prepareEpisodeDetails($tvShowId, $seasons): array
+    protected function prepareEpisodeDetails($tvShowId, $seasons) : array
     {
-        $apiKey = config('services.tmdb.api_key');
         $episodes = [];
         foreach ($seasons as $season) {
             $seasonNumber = $season['season_number'];
             $episodes[$seasonNumber] = TMDB::seasonEpisodes($tvShowId, $seasonNumber);
-            // $episodes[$seasonNumber] = Http::get(config('services.tmdb.base_url')."/tv/{$tvShowId}/season/{$seasonNumber}?api_key={$apiKey}")
-            //     ->json()['episodes'];
         }
 
         $episodes = collect($episodes)->flatten(1)->filter(function ($data) {
@@ -179,7 +176,7 @@ class TvShowController extends Controller
      *
      * @param  array  $genres
      */
-    private function getGenres($genres): Collection
+    private function getGenres($genres) : Collection
     {
         $data = [];
         foreach ($genres as $genre) {
@@ -194,15 +191,15 @@ class TvShowController extends Controller
      *
      * @param  string  $time
      */
-    protected function formatRuntime($time): string
+    protected function formatRuntime($time) : string
     {
         [$hours, $minutes] = explode(':', $time);
         $totalMinutes = $hours * 60 + $minutes;
         $convertedHours = floor($totalMinutes / 60);
         $remainingMinutes = $totalMinutes % 60;
 
-        $output = ($convertedHours > 0 ? "$convertedHours hour ".($convertedHours > 1 ? 's' : '') : '')
-            .($remainingMinutes > 0 ? (empty($output) ? '' : ' and ')."$remainingMinutes minute".($remainingMinutes > 1 ? 's' : '') : '');
+        $output = ($convertedHours > 0 ? "$convertedHours hour " . ($convertedHours > 1 ? 's' : '') : '')
+            . ($remainingMinutes > 0 ? (empty($output) ? '' : ' and ') . "$remainingMinutes minute" . ($remainingMinutes > 1 ? 's' : '') : '');
 
         return $output;
     }
@@ -212,7 +209,7 @@ class TvShowController extends Controller
      *
      * @param  array  $titles
      */
-    private function getAlternativeTitles($titles): array
+    private function getAlternativeTitles($titles) : array
     {
         return collect($titles)->map(function ($title) {
             return $title['title'];
