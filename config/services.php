@@ -32,6 +32,7 @@ return [
     ],
 
     'tmdb' => [
+        'api_key' => env('TMDB_API_KEY'),
         'token' => env('TMDB_READ_ACCESS_TOKEN'),
         'base_url' => 'https://api.themoviedb.org/3',
     ],

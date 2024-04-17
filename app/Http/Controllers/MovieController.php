@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\TMDB;
 use App\Traits\CastCrewDetails;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Number;
 use Illuminate\View\View;
 
@@ -20,9 +20,11 @@ class MovieController extends Controller
      */
     public function show($movieId): View
     {
-        $movie = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.base_url').'/movie/'.$movieId.'?append_to_response=credits,alternative_titles')
-            ->json();
+        $movieFilter = [
+            'api_key' => config('services.tmdb.api_key'),
+            'append_to_response' => 'credits,alternative_titles',
+        ];
+        $movie = TMDB::movieDetails($movieId, $movieFilter);
         $movie = $this->formatMovieDetails($movie);
 
         return view('movie.show')->with([

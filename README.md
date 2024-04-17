@@ -7,7 +7,8 @@ The list of Korean Movies and Korean Dramas. In this project, one can view the l
 -   People
 
 The details are fetched from the [The Movie Database](https://themoviedb.org).
-Therefore, you will have to get the Read Access Token after registering on their website.
+Therefore, you will have to get the API Key and the Read Access Token after registering on their website.
+Copy and paste the api key as value for the `TMDB_API_KEY` in the `.env` file.
 Copy and paste the token as value for the `TMDB_READ_ACCESS_TOKEN` in the `.env` file.
 
 ### Installation

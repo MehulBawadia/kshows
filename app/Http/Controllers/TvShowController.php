@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\TMDB;
 use App\Traits\CastCrewDetails;
 use App\Traits\GenresList;
 use Carbon\Carbon;
@@ -67,9 +68,11 @@ class TvShowController extends Controller
      */
     public function show($tvShowId): View
     {
-        $tvShow = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.base_url')."/tv/{$tvShowId}?append_to_response=credits,alternative_titles")
-            ->json();
+        $tvShowFilter = [
+            'api_key' => config('services.tmdb.api_key'),
+            'append_to_response' => 'credits,alternative_titles',
+        ];
+        $tvShow = TMDB::tvShowDetails($tvShowId, $tvShowFilter);
         $tvShow = $this->formatTvShowDetails($tvShow);
 
         return view('tv-shows.show', [
@@ -88,6 +91,7 @@ class TvShowController extends Controller
     protected function getTvShows($pageNumber): array
     {
         $tvFilter = [
+            'api_key' => config('services.tmdb.api_key'),
             'air_date.lte' => today()->format('Y-m-d'),
             'page' => $pageNumber,
             'sort_by' => 'first_air_date.desc',
@@ -96,13 +100,7 @@ class TvShowController extends Controller
             'with_original_language' => 'ko',
             'without_genres' => $this->unwatedGenres->keys()->implode('|'),
         ];
-        $tvFilter = collect($tvFilter)->implode(function ($value, $index) {
-            return "{$index}={$value}";
-        }, '&');
-
-        $this->tvResponse = Http::withToken(config('services.tmdb.token'))
-            ->get(config('services.tmdb.base_url')."/discover/tv?{$tvFilter}")
-            ->json();
+        $this->tvResponse = TMDB::tvShows($tvFilter);
 
         $this->tvShowsList = array_merge($this->tvShowsList, $this->tvResponse['results']);
 
@@ -147,12 +145,13 @@ class TvShowController extends Controller
      */
     protected function prepareEpisodeDetails($tvShowId, $seasons): array
     {
+        $apiKey = config('services.tmdb.api_key');
         $episodes = [];
         foreach ($seasons as $season) {
             $seasonNumber = $season['season_number'];
-            $episodes[$seasonNumber] = Http::withToken(config('services.tmdb.token'))
-                ->get(config('services.tmdb.base_url')."/tv/{$tvShowId}/season/{$seasonNumber}")
-                ->json()['episodes'];
+            $episodes[$seasonNumber] = TMDB::seasonEpisodes($tvShowId, $seasonNumber);
+            // $episodes[$seasonNumber] = Http::get(config('services.tmdb.base_url')."/tv/{$tvShowId}/season/{$seasonNumber}?api_key={$apiKey}")
+            //     ->json()['episodes'];
         }
 
         $episodes = collect($episodes)->flatten(1)->filter(function ($data) {
