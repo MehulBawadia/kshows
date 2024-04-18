@@ -23,11 +23,6 @@
 
         <div class="my-3 text-sm leading-6 text-gray-600">
             {{ $movieTvShow['genres'] }}
-            {{-- @foreach ($show['genre_ids'] as $index => $genre)
-                <span class="">
-                    {{ $genres->get($genre) }}
-                </span>
-            @endforeach --}}
         </div>
     </div>
 </div>
