@@ -26,6 +26,12 @@ php artisan serve --host=localhost
 npm run dev
 ```
 
+#### Notes
+
+Won't Fix cURL 500 Server Error PR: https://github.com/MehulBawadia/kshows/pull/41
+
+Issue #39 affecting above PR: https://github.com/MehulBawadia/kshows/issues/39
+
 #### License
 
 This project is an open-sourced software licensed under the [MIT License](https://opensource.org/license/mit)
