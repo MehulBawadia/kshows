@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Services\TMDB;
 use App\Traits\GenresList;
+use App\Traits\TvOrMovieCard;
 use Illuminate\View\View;
 
 class HomeController extends Controller
 {
-    use GenresList;
+    use GenresList, TvOrMovieCard;
 
     /**
      * The list of all the movies instance holder.
@@ -25,13 +26,28 @@ class HomeController extends Controller
     public $movieResponse = [];
 
     /**
+     * The unwanted genres list.
+     *
+     * @var array
+     */
+    public $unwantedGenres = [];
+
+    /**
      * Display the home page.
      */
     public function index($pageNumber = 1): View
     {
+        $genres = $this->moviesGenre();
+
+        $this->unwantedGenres = $genres->filter(function ($genre) {
+            if (in_array($genre, ['Animation', 'Kids', 'News', 'Reality', 'Documentary', 'Talk'])) {
+                return $genre;
+            }
+        });
+
         $popularMovies = $this->getMovies($pageNumber);
 
-        $genres = $this->moviesGenre();
+        $popularMovies = $this->prepareMovieOrTvDetails('movie', $popularMovies);
 
         return view('welcome')->with([
             'popularMovies' => $popularMovies,
@@ -62,6 +78,7 @@ class HomeController extends Controller
             'release_date.lte' => today()->format('Y-m-d'),
             'release_date.gte' => '1970-01-01',
             'vote_count.gte' => 3,
+            'without_genres' => $this->unwantedGenres->keys()->implode('|'),
         ];
         $this->movieResponse = TMDB::movies($movieFilter);
 
