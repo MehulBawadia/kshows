@@ -1,13 +1,12 @@
 <div class="mt-8 overflow-hidden rounded-md bg-white shadow-md shadow-gray-400">
-    <a href="{{ route('movie.show', $movie['id']) }}">
-        <img src="https://image.tmdb.org/t/p/w500/{{ $movie['poster_path'] }}" alt="{{ $movie['title'] }}"
-            title="{{ $movie['title'] }}"
+    <a href="{{ $movieTvShow['route_link'] }}">
+        <img src="{{ $movieTvShow['poster_image'] }}" alt="{{ $movieTvShow['name'] }}" title="{{ $movieTvShow['name'] }}"
             class="w-full transition duration-150 ease-in-out hover:scale-105 hover:opacity-75" />
     </a>
 
     <div class="mt-2 px-4 py-1 tracking-wider">
-        <a href="{{ route('movie.show', $movie['id']) }}"
-            class="text-base font-semibold text-gray-800 transition duration-200 ease-in-out hover:text-cyan-800 focus:text-cyan-800 focus:outline-none xl:text-lg">{{ $movie['title'] }}</a>
+        <a href="{{ $movieTvShow['route_link'] }}"
+            class="text-base font-semibold text-gray-800 transition duration-200 ease-in-out hover:text-cyan-800 focus:text-cyan-800 focus:outline-none xl:text-lg">{{ $movieTvShow['name'] }}</a>
 
         <div class="mt-1 flex items-center text-sm text-gray-600">
             <svg class="w-4 fill-current text-cyan-800" viewBox="0 0 24 24">
@@ -17,17 +16,18 @@
                         data-name="star" />
                 </g>
             </svg>
-            <span class="ml-1">{{ \Illuminate\Support\Number::percentage($movie['vote_average'] * 10) }}</span>
+            <span class="ml-1">{{ $movieTvShow['vote_average'] }}</span>
             <span class="mx-2">|</span>
-            <span>{{ $movie['release_date'] }}</span>
+            <span>{{ $movieTvShow['released_date'] }}</span>
         </div>
 
-        <div class="my-1">
-            @foreach ($movie['genre_ids'] as $index => $genre)
-                <span class="text-sm text-gray-600">
+        <div class="my-3 text-sm leading-6 text-gray-600">
+            {{ $movieTvShow['genres'] }}
+            {{-- @foreach ($show['genre_ids'] as $index => $genre)
+                <span class="">
                     {{ $genres->get($genre) }}
                 </span>
-            @endforeach
+            @endforeach --}}
         </div>
     </div>
 </div>

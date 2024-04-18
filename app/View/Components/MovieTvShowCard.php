@@ -2,7 +2,6 @@
 
 namespace App\View\Components;
 
-use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 
 class MovieCard extends Component
@@ -13,11 +12,9 @@ class MovieCard extends Component
      * @return void
      */
     public function __construct(
-        public array $movie,
-        public Collection $genres
+        public array $movieTvShow
     ) {
-        $this->movie = $movie;
-        $this->genres = $genres;
+        $this->movieTvShow = $movieTvShow;
     }
 
     /**
@@ -27,6 +24,6 @@ class MovieCard extends Component
      */
     public function render()
     {
-        return view('components.movie-card');
+        return view('components.movie-tv-show-card');
     }
 }
