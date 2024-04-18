@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\TMDB;
 use App\Traits\CastCrewDetails;
 use App\Traits\GenresList;
+use App\Traits\TvOrMovieCard;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Number;
@@ -12,7 +13,7 @@ use Illuminate\View\View;
 
 class TvShowController extends Controller
 {
-    use CastCrewDetails, GenresList;
+    use CastCrewDetails, GenresList, TvOrMovieCard;
 
     /**
      * The list of all the tv shows instance holder.
@@ -51,6 +52,8 @@ class TvShowController extends Controller
         });
 
         $tvShows = $this->getTvShows($pageNumber);
+
+        $tvShows = $this->prepareMovieOrTvDetails('tv', $tvShows);
 
         return view('tv-shows.index', [
             'tvShows' => $tvShows,
