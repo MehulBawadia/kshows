@@ -26,18 +26,6 @@ php artisan serve --host=localhost
 npm run dev
 ```
 
-#### Notes
-
-Sometimes, while viewing it live, it will display 500 error.
-This error comes from the hosting provider that the app is hosted on.
-Wait for few minutes, it will display the page properly.
-
-You can read about it in the [Issue #39](https://github.com/MehulBawadia/kshows/issues/39)
-
-#### Live Demo
-
-You can check the [live demo here](https://kshows.bmehul.com)
-
 #### License
 
 This project is an open-sourced software licensed under the [MIT License](https://opensource.org/license/mit)
