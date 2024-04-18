@@ -2,7 +2,7 @@
     <div class="overflow-hidden rounded-md bg-white shadow-md shadow-gray-400">
         <a href="{{ route('person.show', $user['id']) }}">
             <img src="{{ $user['profile_picture'] }}" alt="{{ $user['name'] }}" title="{{ $user['name'] }}"
-                class="transition duration-150 ease-in-out hover:opacity-75" width="300" height="450" />
+                class="w-full transition duration-150 ease-in-out hover:opacity-75" width="300" height="450" />
         </a>
 
         <div class="mt-2 px-4 py-2">
