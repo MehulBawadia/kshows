@@ -20,34 +20,11 @@
         </div>
     </div>
 
-    <div class="my-16 px-8">
+    <div class="my-2 px-8 sm:my-4">
         <div class="container mx-auto">
             <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-                <div>
-                    <img src="{{ $tvShow['poster_path'] }}" alt="{{ $tvShow['title'] }}"
-                        class="mx-auto block w-full rounded-md" />
-
-                    <div class="my-6 text-sm leading-6 tracking-wider lg:text-base lg:leading-8">
-                        <div class="font-medium text-gray-500">Alternative Titles</div>
-                        <div class="font-semibold text-gray-800">
-                            @forelse ($tvShow['alternative_titles'] as $title)
-                                <span class="block">{{ $title }}</span>
-                            @empty
-                                No alternative titles added.
-                            @endforelse
-                        </div>
-                    </div>
-
-                    <div class="my-6 text-sm leading-6 tracking-wider lg:text-base lg:leading-8">
-                        <div class="font-medium text-gray-500">Number of Seasons</div>
-                        <div class="font-semibold text-gray-800">{{ $tvShow['total_seasons'] }}</div>
-                    </div>
-
-                    <div class="my-6 text-sm leading-6 tracking-wider lg:text-base lg:leading-8">
-                        <div class="font-medium text-gray-500">Number of Episodes</div>
-                        <div class="font-semibold text-gray-800">{{ $tvShow['total_episodes'] }}</div>
-                    </div>
-                </div>
+                <img src="{{ $tvShow['poster_path'] }}" alt="{{ $tvShow['title'] }}"
+                    class="mx-auto block w-full rounded-md" />
 
                 <div class="w-full md:col-span-2">
                     <h1 class="text-xl font-bold uppercase tracking-wider text-gray-800 md:text-3xl">
@@ -69,26 +46,44 @@
                         <span>{{ $tvShow['genres'] }}</span>
                     </div>
 
+                    <div class="my-6 text-sm leading-6 tracking-wider lg:text-base lg:leading-8">
+                        <div class="font-semibold text-gray-700">Alternative Titles:</div>
+                        <div class="text-gray-800">
+                            {{ implode(' | ', $tvShow['alternative_titles']) }}
+                        </div>
+                    </div>
+
+                    <div class="my-6 text-sm leading-6 tracking-wider lg:text-base lg:leading-8">
+                        <span class="font-medium text-gray-700">Number of Seasons:</span>
+                        <span class="ml-1 font-semibold text-gray-800">{{ $tvShow['total_seasons'] }}</span>
+                    </div>
+
+                    <div class="my-6 text-sm leading-6 tracking-wider lg:text-base lg:leading-8">
+                        <span class="font-medium text-gray-700">Number of Episodes:</span>
+                        <span class="ml-1 font-semibold text-gray-800">{{ $tvShow['total_episodes'] }}</span>
+                    </div>
+
                     <p
                         class="mt-8 text-justify text-sm leading-6 tracking-wider text-gray-700 md:text-base lg:text-lg lg:leading-8">
                         {{ $tvShow['overview'] }}</p>
-
-                    <div class="my-12">
-                        <h2 class="text-base font-semibold tracking-wider text-gray-800 md:text-xl">Cast</h2>
-
-                        <div
-                            class="mt-6 grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                            @foreach ($tvShow['cast'] as $cast)
-                                <x-user-card :user="$cast" />
-                            @endforeach
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="px-8 py-16">
+    <div class="my-6 px-8 py-8">
+        <div class="container mx-auto">
+            <h2 class="text-base font-semibold tracking-wider text-gray-800 sm:text-xl">Cast</h2>
+
+            <div class="mt-6 grid grid-cols-1 gap-8 xxs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                @foreach ($tvShow['cast'] as $cast)
+                    <x-user-card :user="$cast" />
+                @endforeach
+            </div>
+        </div>
+    </div>
+
+    <div class="my-6 px-8 py-8">
         <div class="container mx-auto">
             <h2 class="text-base font-semibold tracking-wider text-gray-800 md:text-xl">Episodes</h2>
 
@@ -132,12 +127,12 @@
         </div>
     </div>
 
-    <div class="px-8 py-16">
+    <div class="my-6 px-8 py-8">
         <div class="container mx-auto">
-            <h2 class="text-base font-semibold tracking-wider text-gray-800 md:text-xl">Crew Members</h2>
+            <h2 class="text-base font-semibold tracking-wider text-gray-800 sm:text-xl">Crew Members</h2>
 
             @if ($tvShow['crew'])
-                <div class="mt-6 grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                <div class="mt-6 grid grid-cols-1 gap-8 xxs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                     @foreach ($tvShow['crew'] as $crew)
                         <x-user-card :user="$crew" />
                     @endforeach
