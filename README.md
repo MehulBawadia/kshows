@@ -1,10 +1,17 @@
 ## KShows
 
+### IMPORTANT
+
+This project has reached its end. Refer the [KoDram](https://github.com/MehulBawadia/kodram) project.
+For a few weeks, only the composer and node packages will be updated.
+
+---
+
 The list of Korean Movies and Korean Dramas. In this project, one can view the list and the individual details of the following:
 
--   Movies
--   TV Series
--   People
+- Movies
+- TV Series
+- People
 
 The details are fetched from the [The Movie Database](https://themoviedb.org).
 Therefore, you will have to get the API Key and the Read Access Token after registering on their website.
